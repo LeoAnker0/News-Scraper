@@ -96,9 +96,13 @@ def filterWebPage(rules, soup):
 		link = str(link.get('href'))
 		linksTooFilter.append(link)
 
+	#Starts with
+	#-------------------------------------------------
+
 
 	#check for starts_with_type, if type string, then do string type, 
 	#if none, then do none, if comman, then do command
+
 	starts_with_type = str(rules['starts_with_type'])
 
 	if starts_with_type == "string":
@@ -130,7 +134,7 @@ def filterWebPage(rules, soup):
 
 			linksTooFilter = startsWithNumberLinksList
 
-
+	#doesn't start with
 	#-------------------------------------------------
 
 	doesnt_start_with_type = str(rules['doesnt_start_with_type'])
@@ -166,17 +170,24 @@ def filterWebPage(rules, soup):
 
 
 
-
-
-
-
-	#add filter for ends with/doesn't end with
-
-
 	#ends with
+	#-------------------------------------------------
+	
 
 
 
+
+	#doesn't end with
+	#-------------------------------------------------
+
+
+
+
+
+
+
+	#doesn't have
+	#-------------------------------------------------
 
 	#remove all links which have strings matching the doesnt_have array
 	noElementsInDoesntHaveArray = len(rules['doesnt_have'])
@@ -192,6 +203,10 @@ def filterWebPage(rules, soup):
 
 			#set main list to be equal to new list
 			linksTooFilter = doesntHaveLinksList
+
+	#has
+	#-------------------------------------------------
+
 
 	#remove all links which have strings matching the has array
 	noElementsInHasArray = len(rules['has'])
