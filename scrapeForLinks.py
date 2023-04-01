@@ -264,9 +264,7 @@ def filterWebPage(rules, soup):
 
 	#has
 	#-------------------------------------------------
-
-
-	#remove all links which have strings matching the has array
+	#remove all links which dont have strings matching the has array
 	noElementsInHasArray = len(rules['has'])
 	for i in range(noElementsInHasArray):
 		has = str(rules['has'][i])
@@ -282,15 +280,31 @@ def filterWebPage(rules, soup):
 			linksTooFilter = hasLinksList
 
 
-
-
-
 	#last step is to remove all duplicates, whilst maintaing order
 	linksTooFilter = list(OrderedDict.fromkeys(linksTooFilter))
 
+	#if link doesn't start with https, then add the url to link
+	links = []
 	for link in linksTooFilter:
-		print(link)
+		if link[8:] != "https://":
+			newLink = str(rules['url']) + link
+			links.append(newLink)
+		else:
+			links.append(link)
 
+	return links
+
+
+def writeLinksTooFile(name, url, links, targetOutputFile):
+	data = {
+		"scrape_version": "0.1",
+		"name": name,
+		"originURL": url,
+		"linksArray": links
+	}
+
+	with open(targetOutputFile, "a", encoding="UTF-8") as file:
+		json.dump(data, file, ensure_ascii=False)
 
 
 
@@ -300,12 +314,16 @@ def filterWebPage(rules, soup):
 if __name__ == "__main__":
 	print("run link scraper")
 	scrapeListFile = "scrapeListConfig.json"
+	targetLinksOutputFile = "links.json"
 
 	websites = importScrapeList(scrapeListFile)
 
 	for websiteRules in websites:
+		websiteName = websiteRules['name']
+		websiteURL = websiteRules['url']
 		soup = downloadWebPage(websiteRules)
-		filterWebPage(websiteRules, soup)
+		links = filterWebPage(websiteRules, soup)
+		writeLinksTooFile(websiteName, websiteURL, links, targetLinksOutputFile)
 
 
 

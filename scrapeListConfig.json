@@ -1,32 +1,32 @@
 {
-  "websites": [
-    {
-      "name": "dr",
-      "url": "https://dr.dk",
+    "websites": [
+        {
+            "name": "dr",
+            "url": "https://dr.dk",
 
-      "starts_with_type": "string",
-      "starts_with_command": "",
-      "starts_with": "/nyheder/",
+            "starts_with_type": "string",
+            "starts_with_command": "",
+            "starts_with": "/nyheder/",
 
-      "doesnt_start_with_type": "",
-      "doesnt_start_with_command": "",
-      "doesnt_start_with": "",
+            "doesnt_start_with_type": "",
+            "doesnt_start_with_command": "",
+            "doesnt_start_with": "",
 
-      "ends_with_type": "",
-      "ends_with_command": "",
-      "ends_with": "",
+            "ends_with_type": "",
+            "ends_with_command": "",
+            "ends_with": "",
 
-      "doesnt_end_with_type": "",
-      "doesnt_end_with_command": "",
-      "doesnt_end_with": "",
+            "doesnt_end_with_type": "",
+            "doesnt_end_with_command": "",
+            "doesnt_end_with": "",
 
-      "has": [
-        ""
-      ],
-      "doesnt_have": [
-        "/seneste/"
-      ]
-    }
+            "has": [
+                ""
+            ],
+            "doesnt_have": [
+                "/seneste/"
+            ]
+        }
 
-  ]
+    ]
 }
