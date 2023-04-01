@@ -1,7 +1,8 @@
 {
   "websites": [
     {
-      "name": "dr.dk",
+      "name": "dr",
+      "url": "https://dr.dk",
       "starts_with": [
         ""
       ],
@@ -16,7 +17,8 @@
       ]
     },
     {
-      "name": "nrk.no",
+      "name": "nrk",
+      "url": "https://nrk.no",
       "starts_with": [
         ""
       ],
