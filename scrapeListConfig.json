@@ -3,9 +3,7 @@
     {
       "name": "dr",
       "url": "https://dr.dk",
-      "starts_with": [
-        "/nyheder/"
-      ],
+      "starts_with": "/nyheder/",
       "ends_with": [
         ""
       ],
@@ -20,9 +18,7 @@
     {
       "name": "nrk",
       "url": "https://nrk.no",
-      "starts_with": [
-        ""
-      ],
+      "starts_with": "",
       "ends_with": [
         ""
       ],

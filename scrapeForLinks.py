@@ -66,7 +66,7 @@ def filterWebPage(rules, soup):
 
 
 	#require link to start with rule = "starts_with"
-	startsWith = str(rules['starts_with'][0])
+	startsWith = str(rules['starts_with'])
 	#remove string if not in beginning
 	if len(startsWith) > 0:
 		#new list of only the items wanted
