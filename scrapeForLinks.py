@@ -134,9 +134,11 @@ def filterWebPage(rules, soup):
 
 			linksTooFilter = startsWithNumberLinksList
 
+
+
+
 	#doesn't start with
 	#-------------------------------------------------
-
 	doesnt_start_with_type = str(rules['doesnt_start_with_type'])
 
 	if doesnt_start_with_type == "string":
@@ -172,7 +174,34 @@ def filterWebPage(rules, soup):
 
 	#ends with
 	#-------------------------------------------------
-	
+	ends_with_type = str(rules['ends_with_type'])
+
+	if ends_with_type == "string":
+		ends_with = str(rules['ends_with'])
+
+		endsWithLinksList = []
+
+		lengthOfEnd = len(ends_with)
+		for link in linksTooFilter:
+			stringShortened = link[-lengthOfEnd:]
+			if stringShortened == ends_with:
+				endsWithLinksList.append(link)
+
+		linksTooFilter = endsWithLinksList
+
+	elif ends_with_type == "command":
+		command = str(rules['ends_with_command'])
+
+		if command == "is_numeric":
+			endsWithLinksList = []
+
+			for link in linksTooFilter:
+				lastChar = link[-1]
+				if checkIfNumeric(lastChar) == True:
+					endsWithLinksList.append(link)
+
+			linksTooFilter = endsWithLinksList
+
 
 
 
