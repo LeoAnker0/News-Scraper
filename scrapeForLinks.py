@@ -1,10 +1,3 @@
-#this programme will scrape the main pages of media
-#and news pages for links to articles, so that
-#those articles can then be scraped again 
-
-#return the websites JSON file, since it will then need to be fed
-#into other modules
-
 import json
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -17,8 +10,12 @@ from selenium.webdriver import ActionChains
 import os
 from bs4 import BeautifulSoup
 
-def importScrapeList():
-	with open('scrapeListConfig.json', 'r') as f:
+
+
+
+
+def importScrapeList(scrapelist):
+	with open(scrapelist, 'r') as f:
 		data = json.load(f)
 
 	websites = data['websites']
@@ -61,47 +58,50 @@ def downloadWebPage(website):
 	return soup
 
 def filterWebPage(rules, soup):
-	linksToFilter = []
+	linksTooFilter = []
 	for link in soup.find_all('a'):
 		link = str(link.get('href'))
-		linksToFilter.append(link)
+		linksTooFilter.append(link)
 
-	#remove string if !not in beginning
-		#from rules, get starts_with
-		#if value = "", then skip
-		#get length of wanted string
-		#check link beginning to see if there
-		#if no then remove from linksToFilter
-		#then proceed to next step
 
-	#check if rule required
-	startsWith = str(*rules['starts_with'])
+	#check if link starts with rule = "starts_with"
+	startsWith = str(rules['starts_with'][0])
 	#remove string if not in beginning
 	if len(startsWith) > 0:
 		#new list of only the items wanted
 		startsWithLinksList = []
+
 		lengthOfStart = len(startsWith)
-		for link in linksToFilter:
+		for link in linksTooFilter:
 			#this checks if the first characters of the string, are equal to the wanted string
 			if link[0:lengthOfStart] == startsWith:
 				#adds to  the list
 				startsWithLinksList.append(link)
 
 		#set main list to be equal to new list
-		linksToFilter = startsWithLinksList
+		linksTooFilter = startsWithLinksList
 
 
-		"""
-	startsWith = rules['starts_with']
-	if startsWith == :
-		print("skip startsWith")
-	print(startsWith)"""
+	#if rule = "doesnt_have" isn't in link
+	doesntHave = str(rules['doesnt_have'][0])
+	if len(doesntHave) > 0:
+		doesntHaveLinksList = []
+
+		#if doesntHave not in link, then append to doesntHaveLinksList
+		for link in linksTooFilter:
+			if link.find(doesntHave) <=0:
+				doesntHaveLinksList.append(link)
+
+		#set main list to be equal to new list
+		linksTooFilter = doesntHaveLinksList
 
 
 
 
 
-	for link in linksToFilter:
+	#last step is to remove all duplicates, whilst maintaing order
+
+	for link in linksTooFilter:
 		print(link)
 
 
@@ -112,8 +112,9 @@ def filterWebPage(rules, soup):
 
 if __name__ == "__main__":
 	print("run link scraper")
+	scrapeListFile = "scrapeListConfig.json"
 
-	websites = importScrapeList()
+	websites = importScrapeList(scrapeListFile)
 
 	for websiteRules in websites:
 		soup = downloadWebPage(websiteRules)
