@@ -11,6 +11,13 @@ import os
 from bs4 import BeautifulSoup
 from collections import OrderedDict
 
+#i should really add error handling, especially for the big cases
+#like when downloading the webpage
+#should also add error handling for all the places where user
+#inputs are used, since those can't be trusted, but hopefully
+#i can also solve that using a gui, with input validation, 
+#but proper error handling would be the *correct* way of doing it...
+
 
 
 
@@ -203,13 +210,36 @@ def filterWebPage(rules, soup):
 			linksTooFilter = endsWithLinksList
 
 
-
-
-
 	#doesn't end with
 	#-------------------------------------------------
+	doesnt_end_with_type = str(rules['doesnt_end_with_type'])
+
+	if doesnt_end_with_type == "string":
+		doesnt_end_with = str(rules['doesnt_end_with'])
+
+		doesntEndWithLinksList = []
+
+		lengthOfEnd = len(doesnt_end_with)
+		for link in linksTooFilter:
+			stringShortened = link[-lengthOfEnd:]
+			if stringShortened != doesnt_end_with:
+				doesntEndWithLinksList.append(link)
+
+		linksTooFilter = doesntEndWithLinksList
 
 
+	elif doesnt_end_with_type == "command":
+		command = str(rules['doesnt_end_with_command'])
+
+		if command == "is_not_numeric":
+			doesntEndWithLinksList = []
+
+			for link in linksTooFilter:
+				lastChar = link[-1]
+				if checkIfNumeric(lastChar) == False:
+					doesntEndWithLinksList.append(link)
+
+			linksTooFilter = doesntEndWithLinksList
 
 
 
@@ -217,7 +247,6 @@ def filterWebPage(rules, soup):
 
 	#doesn't have
 	#-------------------------------------------------
-
 	#remove all links which have strings matching the doesnt_have array
 	noElementsInDoesntHaveArray = len(rules['doesnt_have'])
 	for i in range(noElementsInDoesntHaveArray):

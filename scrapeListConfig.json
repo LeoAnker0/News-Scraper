@@ -8,11 +8,11 @@
       "starts_with_command": "",
       "starts_with": "/nyheder/",
 
-      "doesnt_start_with_type": "command",
-      "doesnt_start_with_command": "is_not_numeric",
+      "doesnt_start_with_type": "",
+      "doesnt_start_with_command": "",
       "doesnt_start_with": "",
 
-      "ends_with_type": "command",
+      "ends_with_type": "",
       "ends_with_command": "",
       "ends_with": "",
 
