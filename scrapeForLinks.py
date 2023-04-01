@@ -284,6 +284,10 @@ def filterWebPage(rules, soup):
 	#last step is to remove all duplicates, whilst maintaing order
 	linksTooFilter = list(OrderedDict.fromkeys(linksTooFilter))
 
+	return linksTooFilter
+
+
+def addHTTPStoLinks(rules, linksTooFilter):
 	#if link doesn't start with https, then add the url to link
 	links = []
 	for link in linksTooFilter:
@@ -294,6 +298,7 @@ def filterWebPage(rules, soup):
 			links.append(link)
 
 	return links
+
 
 
 def writeLinksTooFile(name, url, links, targetOutputFile):
@@ -312,7 +317,27 @@ def writeLinksTooFile(name, url, links, targetOutputFile):
 
 
 
+def filterNewSite():
+	print(f"adding new site to be scraped")
+	scrapeListFile = "scrapeConfigNew.json"
 
+	websites = importScrapeList(scrapeListFile)
+	for website in websites:
+		soup = downloadWebPage(websiteRules)
+		links = filterWebPage(websiteRules, soup)
+		for link in links:
+			print(link)
+
+def filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile):
+	websites = importScrapeList(scrapeListFile)
+
+	for websiteRules in websites:
+		websiteName = websiteRules['name']
+		websiteURL = websiteRules['url']
+		soup = downloadWebPage(websiteRules)
+		links = filterWebPage(websiteRules, soup)
+		links = addHTTPStoLinks(websiteRules, links)
+		writeLinksTooFile(websiteName, websiteURL, links, targetLinksOutputFile)
 
 
 if __name__ == "__main__":
@@ -321,15 +346,7 @@ if __name__ == "__main__":
 	scrapeListFile = "scrapeListConfig.json"
 	targetLinksOutputFile = "links.json"
 
-	websites = importScrapeList(scrapeListFile)
-
-	for websiteRules in websites:
-		websiteName = websiteRules['name']
-		websiteURL = websiteRules['url']
-		soup = downloadWebPage(websiteRules)
-		links = filterWebPage(websiteRules, soup)
-		writeLinksTooFile(websiteName, websiteURL, links, targetLinksOutputFile)
-
+	filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile)
 
 
 
