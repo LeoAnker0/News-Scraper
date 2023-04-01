@@ -1,0 +1,1 @@
+for scrapeListConfig.toml, the way it will work, is the top setting will have the list of websites, and then each one of these will have it's own section, where it will be possible to add removes, and plusses and so on, and requires, for the links sortinging, and "starts with", and so on.

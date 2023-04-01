@@ -1,0 +1,32 @@
+{
+  "websites": [
+    {
+      "name": "example.com",
+      "required_items": [
+        "login",
+        "cart"
+      ],
+      "unrequired_items": [
+        "newsletter"
+      ],
+      "wanted_items": [
+        "featured_products",
+        "promotions"
+      ]
+    },
+    {
+      "name": "example2.com",
+      "required_items": [
+        "login",
+        "cart"
+      ],
+      "unrequired_items": [
+        "newsletter"
+      ],
+      "wanted_items": [
+        "featured_products",
+        "promotions"
+      ]
+    }
+  ]
+}
