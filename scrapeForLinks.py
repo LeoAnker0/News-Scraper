@@ -65,7 +65,7 @@ def filterWebPage(rules, soup):
 		linksTooFilter.append(link)
 
 
-	#require link to start with rule = "starts_with"
+	#starts with
 	startsWith = str(rules['starts_with'])
 	#remove string if not in beginning
 	if len(startsWith) > 0:
@@ -74,7 +74,7 @@ def filterWebPage(rules, soup):
 
 		lengthOfStart = len(startsWith)
 		for link in linksTooFilter:
-			#this checks if the first characters of the string, are equal to the wanted string
+			#this checks if the characters of the string, are equal to the wanted string
 			if link[0:lengthOfStart] == startsWith:
 				#adds to  the list
 				startsWithLinksList.append(link)
@@ -82,6 +82,21 @@ def filterWebPage(rules, soup):
 		#set main list to be equal to new list
 		linksTooFilter = startsWithLinksList
 
+
+	#doesn't start with
+	doesntStartWith = str(rules['doesnt_start_with'])
+	#remove link if in beginning
+	if len(doesntStartWith) > 1:
+		doesntStartWithLinksList = []
+
+		lengthOfStart = len(doesntStartWith)
+		for link in linksTooFilter:
+			#checks if the selected strings match
+			if link[0:lengthOfStart] != doesntStartWith:
+				doesntStartWithLinksList.append(link)
+
+		#set the main list to be equal to new list
+		linksTooFilter = doesntStartWithLinksList
 
 
 	#remove all links which have strings matching the doesnt_have array
@@ -99,6 +114,22 @@ def filterWebPage(rules, soup):
 
 			#set main list to be equal to new list
 			linksTooFilter = doesntHaveLinksList
+
+	#remove all links which have strings matching the has array
+	noElementsInHasArray = len(rules['has'])
+	for i in range(noElementsInHasArray):
+		#if rule = "doesnt_have" isn't in link
+		has = str(rules['has'][i])
+		if len(has) > 0:
+			hasLinksList = []
+
+			#if doesntHave not in link, then append to doesntHaveLinksList
+			for link in linksTooFilter:
+				if link.find(has) > 0:
+					hasLinksList.append(link)
+
+			#set main list to be equal to new list
+			linksTooFilter = hasLinksList
 
 
 
