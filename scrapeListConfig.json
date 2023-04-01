@@ -1,32 +1,35 @@
 {
   "websites": [
     {
-      "name": "example.com",
-      "required_items": [
-        "login",
-        "cart"
+      "name": "dr.dk",
+      "starts_with": [
+        ""
       ],
-      "unrequired_items": [
-        "newsletter"
+      "ends_with": [
+        ""
       ],
-      "wanted_items": [
-        "featured_products",
-        "promotions"
+      "has": [
+        ""
+      ],
+      "doesnt_have": [
+        ""
       ]
     },
     {
-      "name": "example2.com",
-      "required_items": [
-        "login",
-        "cart"
+      "name": "nrk.no",
+      "starts_with": [
+        ""
       ],
-      "unrequired_items": [
-        "newsletter"
+      "ends_with": [
+        ""
       ],
-      "wanted_items": [
-        "featured_products",
-        "promotions"
+      "has": [
+        ""
+      ],
+      "doesnt_have": [
+        ""
       ]
     }
+
   ]
 }
