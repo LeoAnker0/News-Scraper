@@ -10,6 +10,7 @@ from selenium.webdriver import ActionChains
 import os
 from bs4 import BeautifulSoup
 from collections import OrderedDict
+import time
 
 #i should really add error handling, especially for the big cases
 #like when downloading the webpage
@@ -296,10 +297,13 @@ def filterWebPage(rules, soup):
 
 
 def writeLinksTooFile(name, url, links, targetOutputFile):
+	scrapeTime = int(round(time.time() * 1000))
+
 	data = {
-		"scrape_version": "0.1",
+		"scraper_version": "0.1",
 		"name": name,
 		"originURL": url,
+		"scrape_time": scrapeTime,
 		"linksArray": links
 	}
 
@@ -313,6 +317,7 @@ def writeLinksTooFile(name, url, links, targetOutputFile):
 
 if __name__ == "__main__":
 	print("run link scraper")
+
 	scrapeListFile = "scrapeListConfig.json"
 	targetLinksOutputFile = "links.json"
 
@@ -324,7 +329,6 @@ if __name__ == "__main__":
 		soup = downloadWebPage(websiteRules)
 		links = filterWebPage(websiteRules, soup)
 		writeLinksTooFile(websiteName, websiteURL, links, targetLinksOutputFile)
-
 
 
 
