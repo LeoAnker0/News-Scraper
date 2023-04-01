@@ -82,6 +82,9 @@ def filterWebPage(rules, soup):
 		linksTooFilter = startsWithLinksList
 
 
+	#check how many items there are in the doesnt_have array
+	print(f"items in the doesn't have array = {len(rules['doesnt_have'])}")
+
 	#if rule = "doesnt_have" isn't in link
 	doesntHave = str(rules['doesnt_have'][0])
 	if len(doesntHave) > 0:
@@ -101,8 +104,8 @@ def filterWebPage(rules, soup):
 
 	#last step is to remove all duplicates, whilst maintaing order
 
-	for link in linksTooFilter:
-		print(link)
+	#for link in linksTooFilter:
+	#	print(link)
 
 
 
