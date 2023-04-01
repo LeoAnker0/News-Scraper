@@ -58,17 +58,52 @@ def downloadWebPage(website):
 
 	return soup
 
+
+def checkIfNumeric(character):
+	return character.isdigit()
+
+
+
 def filterWebPage(rules, soup):
+	"""
+	Currently accepted filter rules are as follows
+	starts_with:
+		string: match string (starts_with)
+		command-is_numeric: checks if first character is a number
+		
+	doesnt_start_with:
+		string: ! match string (doesnt_start_with)
+		command-is_not_numeric: checks if first character is not a number
+
+	ends_with:
+		string: match string
+		command-is_numeric: checks if last character is a number
+
+	doesnt_end_with:
+		string: !match string
+		command-is_not_numeric: checks if last character is not a number
+
+	has:
+		string: requires that links have this string in them
+
+	doesnt_have:
+		string: remove all linkks that have this string
+
+	"""
+
 	linksTooFilter = []
 	for link in soup.find_all('a'):
 		link = str(link.get('href'))
 		linksTooFilter.append(link)
 
 
-	#starts with
-	startsWith = str(rules['starts_with'])
-	#remove string if not in beginning
-	if len(startsWith) > 0:
+	#check for starts_with_type, if type string, then do string type, 
+	#if none, then do none, if comman, then do command
+	starts_with_type = str(rules['starts_with_type'])
+
+	if starts_with_type == "string":
+		#starts with
+		startsWith = str(rules['starts_with'])
 		#new list of only the items wanted
 		startsWithLinksList = []
 
@@ -82,11 +117,28 @@ def filterWebPage(rules, soup):
 		#set main list to be equal to new list
 		linksTooFilter = startsWithLinksList
 
+	elif starts_with_type == "command":
+		command = str(rules['starts_with_command'])
+		#checks if the first character of link is a number, and removes if not
+		if command == "is_numeric":
+			startsWithNumberLinksList = []
 
-	#doesn't start with
-	doesntStartWith = str(rules['doesnt_start_with'])
-	#remove link if in beginning
-	if len(doesntStartWith) > 1:
+			for link in linksTooFilter:
+				firstCharacter = link[0]
+				if checkIfNumeric(firstCharacter) == True:
+					startsWithNumberLinksList.append(link)
+
+			linksTooFilter = startsWithNumberLinksList
+
+
+	#-------------------------------------------------
+
+	doesnt_start_with_type = str(rules['doesnt_start_with_type'])
+
+	if doesnt_start_with_type == "string":
+		#starts with
+		doesntStartWith = str(rules['doesnt_start_with'])
+		#new list of only the items wanted
 		doesntStartWithLinksList = []
 
 		lengthOfStart = len(doesntStartWith)
@@ -99,10 +151,36 @@ def filterWebPage(rules, soup):
 		linksTooFilter = doesntStartWithLinksList
 
 
+	elif doesnt_start_with_type == "command":
+		command = str(rules['doesnt_start_with_command'])
+		#checks if the first character of link is a number, and removes if not
+		if command == "is_not_numeric":
+			doesntStartWithLinksList = []
+
+			for link in linksTooFilter:
+				firstCharacter = link[0]
+				if checkIfNumeric(firstCharacter) == False:
+					doesntStartWithLinksList.append(link)
+
+			linksTooFilter = doesntStartWithLinksList
+
+
+
+
+
+
+
+	#add filter for ends with/doesn't end with
+
+
+	#ends with
+
+
+
+
 	#remove all links which have strings matching the doesnt_have array
 	noElementsInDoesntHaveArray = len(rules['doesnt_have'])
 	for i in range(noElementsInDoesntHaveArray):
-		#if rule = "doesnt_have" isn't in link
 		doesntHave = str(rules['doesnt_have'][i])
 		if len(doesntHave) > 0:
 			doesntHaveLinksList = []
@@ -118,18 +196,19 @@ def filterWebPage(rules, soup):
 	#remove all links which have strings matching the has array
 	noElementsInHasArray = len(rules['has'])
 	for i in range(noElementsInHasArray):
-		#if rule = "doesnt_have" isn't in link
 		has = str(rules['has'][i])
 		if len(has) > 0:
 			hasLinksList = []
 
-			#if doesntHave not in link, then append to doesntHaveLinksList
+			#if has in link, then append to hasLinksList
 			for link in linksTooFilter:
 				if link.find(has) > 0:
 					hasLinksList.append(link)
 
 			#set main list to be equal to new list
 			linksTooFilter = hasLinksList
+
+
 
 
 
