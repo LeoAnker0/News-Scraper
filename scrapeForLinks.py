@@ -33,9 +33,9 @@ def initialise_driver(url):
 	options.add_argument("--user-data-dir=/Users/Leo/Library/Application Support/Google/Chrome/Profile 1")
 	options.add_argument("--profile-directory=Profile 1")
 
-	#options.add_argument('--headless')
-	#options.add_argument('--disable-gpu')
-	#options.add_argument('--no-sandbox')
+	options.add_argument('--headless')
+	options.add_argument('--disable-gpu')
+	options.add_argument('--no-sandbox')
 
 	driver = webdriver.Chrome(service=s, options=options)
 
@@ -45,6 +45,7 @@ def initialise_driver(url):
 def downloadWebPage(website):
 	name = website['name']
 	url = website['url']
+	print(f"\ndownloading {url}, from {name} \n\n")
 
 	#initialise the driver
 	driver = initialise_driver(url)
@@ -59,10 +60,52 @@ def downloadWebPage(website):
 
 	return soup
 
+def filterWebPage(rules, soup):
+	linksToFilter = []
+	for link in soup.find_all('a'):
+		link = str(link.get('href'))
+		linksToFilter.append(link)
+
+	#remove string if !not in beginning
+		#from rules, get starts_with
+		#if value = "", then skip
+		#get length of wanted string
+		#check link beginning to see if there
+		#if no then remove from linksToFilter
+		#then proceed to next step
+
+	#check if rule required
+	startsWith = str(*rules['starts_with'])
+	#remove string if not in beginning
+	if len(startsWith) > 0:
+		#new list of only the items wanted
+		startsWithLinksList = []
+		lengthOfStart = len(startsWith)
+		for link in linksToFilter:
+			#this checks if the first characters of the string, are equal to the wanted string
+			if link[0:lengthOfStart] == startsWith:
+				#adds to  the list
+				startsWithLinksList.append(link)
+
+		#set main list to be equal to new list
+		linksToFilter = startsWithLinksList
 
 
-def scrapeLinks():
-	print(f"scraping links")
+		"""
+	startsWith = rules['starts_with']
+	if startsWith == :
+		print("skip startsWith")
+	print(startsWith)"""
+
+
+
+
+
+	for link in linksToFilter:
+		print(link)
+
+
+
 
 
 
@@ -72,9 +115,9 @@ if __name__ == "__main__":
 
 	websites = importScrapeList()
 
-	for website in websites:
-		soup = downloadWebPage(website)
-		print(soup)
+	for websiteRules in websites:
+		soup = downloadWebPage(websiteRules)
+		filterWebPage(websiteRules, soup)
 
 
 

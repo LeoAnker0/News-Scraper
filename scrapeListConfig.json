@@ -4,7 +4,7 @@
       "name": "dr",
       "url": "https://dr.dk",
       "starts_with": [
-        ""
+        "/nyheder/"
       ],
       "ends_with": [
         ""
