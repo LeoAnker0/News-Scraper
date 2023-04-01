@@ -4,9 +4,9 @@
       "name": "dr",
       "url": "https://dr.dk",
       "starts_with": "/nyheder/",
-      "ends_with": [
-        ""
-      ],
+      "doesnt_start_with": "",
+      "ends_with": "/nyheder/",
+      "doesnt_end_with": "",
       "has": [
         ""
       ],
@@ -19,9 +19,9 @@
       "name": "nrk",
       "url": "https://nrk.no",
       "starts_with": "",
-      "ends_with": [
-        ""
-      ],
+      "doesnt_start_with": "",
+      "ends_with": "",
+      "doesnt_end_with": "",
       "has": [
         ""
       ],
