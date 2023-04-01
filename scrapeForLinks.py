@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
 import os
 from bs4 import BeautifulSoup
+from collections import OrderedDict
 
 
 
@@ -64,7 +65,7 @@ def filterWebPage(rules, soup):
 		linksTooFilter.append(link)
 
 
-	#check if link starts with rule = "starts_with"
+	#require link to start with rule = "starts_with"
 	startsWith = str(rules['starts_with'][0])
 	#remove string if not in beginning
 	if len(startsWith) > 0:
@@ -82,7 +83,8 @@ def filterWebPage(rules, soup):
 		linksTooFilter = startsWithLinksList
 
 
-	#check how many items there are in the doesnt_have array
+
+	#remove all links which have strings matching the doesnt_have array
 	noElementsInDoesntHaveArray = len(rules['doesnt_have'])
 	for i in range(noElementsInDoesntHaveArray):
 		#if rule = "doesnt_have" isn't in link
@@ -100,11 +102,8 @@ def filterWebPage(rules, soup):
 
 
 
-
-
-
 	#last step is to remove all duplicates, whilst maintaing order
-	
+	linksTooFilter = list(OrderedDict.fromkeys(linksTooFilter))
 
 	for link in linksTooFilter:
 		print(link)
