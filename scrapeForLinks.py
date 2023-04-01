@@ -291,8 +291,10 @@ def addHTTPStoLinks(rules, linksTooFilter):
 	#if link doesn't start with https, then add the url to link
 	links = []
 	for link in linksTooFilter:
-		if link[8:] != "https://":
+		if not link.startswith("https://"):
+			#print(link[8:], "https://", link, f"\n")
 			newLink = str(rules['url']) + link
+			print(newLink)
 			links.append(newLink)
 		else:
 			links.append(link)
@@ -316,18 +318,19 @@ def writeLinksTooFile(name, url, links, targetOutputFile):
 		json.dump(data, file, ensure_ascii=False)
 
 
-
+#for when i'm filtering a new site, and need to make the rules
 def filterNewSite():
 	print(f"adding new site to be scraped")
-	scrapeListFile = "scrapeConfigNew.json"
+	scrapeListFile = "newScrapeConfig.json"
 
 	websites = importScrapeList(scrapeListFile)
 	for website in websites:
-		soup = downloadWebPage(websiteRules)
-		links = filterWebPage(websiteRules, soup)
+		soup = downloadWebPage(website)
+		links = filterWebPage(website, soup)
 		for link in links:
 			print(link)
 
+#the normal procedure for scraping links from a page
 def filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile):
 	websites = importScrapeList(scrapeListFile)
 
@@ -347,7 +350,7 @@ if __name__ == "__main__":
 	targetLinksOutputFile = "links.json"
 
 	filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile)
-
+	#filterNewSite()
 
 
 

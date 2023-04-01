@@ -26,6 +26,35 @@
             "doesnt_have": [
                 "/seneste/"
             ]
+        },
+        {
+            "name": "nrk",
+            "url": "https://nrk.no",
+
+            "starts_with_type": "",
+            "starts_with_command": "",
+            "starts_with": "",
+
+            "doesnt_start_with_type": "",
+            "doesnt_start_with_command": "",
+            "doesnt_start_with": "",
+
+            "ends_with_type": "command",
+            "ends_with_command": "is_numeric",
+            "ends_with": "",
+
+            "doesnt_end_with_type": "string",
+            "doesnt_end_with_command": "",
+            "doesnt_end_with": "/",
+
+            "has": [
+                "www.nrk.no"
+            ],
+            "doesnt_have": [
+                "https://www.nrk.no/spesial/",
+                "https://www.nrk.no/mat/",
+                "https://www.nrk.no/etikk/"
+            ]
         }
 
     ]
