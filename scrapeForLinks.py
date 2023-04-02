@@ -349,8 +349,8 @@ if __name__ == "__main__":
 	scrapeListFile = "scrapeListConfig.json"
 	targetLinksOutputFile = "links.json"
 
-	filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile)
-	#filterNewSite()
+	#filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile)
+	filterNewSite()
 
 
 
