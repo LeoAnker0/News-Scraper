@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My GUI</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+
+<body>
+    <div class="menu" id="menu">
+        <div class="tenPercentBox">
+            <h1>Just Shows</h1>
+            <form id="form">
+                <div id="rows">
+                    <!-- initial row -->
+                    <div class="row">
+                        <div class="formGuide">Where</div>
+                        <div class="formGuide">How Many</div>
+                        <div class="formGuide">Condition</div>
+                        <div class="formGuide">Command</div>
+                        <div class="formGuide">Content</div>
+                    </div>
+                    <div class="row">
+                        <select name="where[]">
+                            <option value="start">Start</option>
+                            <option value="end">End</option>
+                            <option value="in">In</option>
+                        </select>
+                        <select name="how_many[]">
+                            <option value="all">All</option>
+                            <option value="any">Any</option>
+                            <option value="number">Number</option>
+                        </select>
+                        <select name="condition[]">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                        <select name="command[]">
+                            <option value="string">String</option>
+                            <option value="is_numeric">Is Numeric</option>
+                            <option value="count">Count</option>
+                        </select>
+                        <select name="content[]">
+                            <option value="option1">Text</option>
+                        </select>
+                        <button type="button" class="remove-row">Remove Row</button>
+                    </div>
+                </div>
+                <button type="button" id="addRowButton">Add Row</button>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <main id="main">
+        <nav>
+            <div class="tenPercentBox">
+                <p id="viewMenuButton">View Menu<p>
+            </div>
+        </nav>
+        <div class="scrapeViewContainer">
+            <div class="scrapeViewGridItem">
+                <ul class="tenPercentBox">
+                    <li>Link 1</li>
+                    <li>Link 2</li>
+                    <li>Link 3</li>
+                    <li>Link 4</li>
+                    <li>Link 5</li>
+                    <li>Link 6</li>
+                </ul>
+            </div>
+            <div class="verticalSeperator"></div>
+            <div class="scrapeViewGridItem backgroundRed">
+                <iframe src="" height="98%" width="100%"></iframe>
+            </div>
+        </div>
+    </main>
+</body>
+<script type="text/javascript" src="app.js"></script>
+
+</html>

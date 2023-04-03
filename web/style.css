@@ -1,0 +1,206 @@
+body {
+    all: unset;
+}
+
+html {
+    all: unset;
+}
+
+
+main {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.tenPercentBox {
+    position: relative;
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+    top: 10%;
+    //background-color: yellow;
+}
+
+h1 {
+    all: unset;
+    font-size: 2rem;
+    font-family: sans-serif;
+}
+
+p {
+    all: unset;
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+li {
+    padding-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+nav {
+    top: 0%;
+    position: relative;
+    width: 100%;
+    height: 10%;
+    background-color: lightgrey;
+    outline: 2px solid black;
+    z-index: 10;
+
+}
+
+.scrapeViewContainer {
+    height: 90%;
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 5px 1fr;
+}
+
+.scrapeViewGridItem {
+    position: relative;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.child:first-child {
+    grid-column: 1 / 2;
+}
+
+.child:last-child {
+    grid-column: 2 / 3;
+}
+
+.verticalSeperator {
+    position: relative;
+    height: 100%;
+    width: 5px;
+    background-color: black;
+}
+
+
+.backgroundBlue {
+    background-color: blue;
+}
+
+.backgroundRed {
+    background-color: red;
+}
+
+
+
+/*menu  ------------------------------------*/
+.menu {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    background-color: darkgrey;
+    z-index: 10000;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    display: none;
+}
+
+iframe {
+    border: none;
+}
+
+
+
+/*form  ------------------------------------*/
+
+/* Set up some basic styles for the form */
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+#rows {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.form-row>div {
+    flex: 1 1 20%;
+    margin-right: 10px;
+}
+
+.form-row>div:last-child {
+    margin-right: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select {
+    display: block;
+    width: 20%;
+    //padding: 10px;
+    //font-size: 16px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.formGuide {
+    display: block;
+    width: 20%;
+    //padding: 10px;
+    //font-size: 16px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+input[type="text"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#addRowButton {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
