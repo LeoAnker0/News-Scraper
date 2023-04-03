@@ -5,8 +5,8 @@
             "url": "https://dr.dk",
 
             "commands": [
-                "start:all:true:string:/nyheder/",
-                "in:all:false:string:/seneste/"
+                "start|all|true|string|/nyheder/",
+                "in|all|false|string|/seneste/"
             ]
         }
 

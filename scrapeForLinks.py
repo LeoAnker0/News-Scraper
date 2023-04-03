@@ -148,9 +148,55 @@ def filterWebPage(rules, soup):
 			return "::skip::"
 
 
+	#is_numeric function
+
+	def is_numeric_comparator(content, how_many, link):
+		def loop_through_string_for_numbers_and_return_count(link):
+			count = 0
+			for char in link:
+				if char.isdigit():
+					count += 1
+			return count
+		count = loop_through_string_for_numbers_and_return_count(link)
+
+		#when type all
+		if content == "all":
+			if count == len(link):
+				return True
+			else:
+				return False
+
+		#when type any
+		elif content == "any":
+			if count > 1:
+				return True
+			else:
+				return False
+
+		#when digit
+		elif content.isdigit():
+			#making sure that input number is valid
+			if int(content) > len(link):
+				#print(f"content is greater than how many")
+				content = len(link)
+			elif int(content) < 0:
+				#print("content is less than zero, not allowed")
+				content = 1			
+
+			#print(count)
+			if count >= int(content):
+				return True
+			else:
+				return False
+
+			#do something
+			#loop through and find the amount of times that there is a number in the string
+			#if this number is lesser than how_many, then return false
+
+
 	#for every command in the rules, do action
 	for command in rules['commands']:
-		array_of_commands = command.split(":")
+		array_of_commands = command.split("|")
 
 		#split the array of commands into seperate variables
 		where = array_of_commands[0] 	#start/end/in?
@@ -181,17 +227,29 @@ def filterWebPage(rules, soup):
 						linksList.append(link)
 						#print(f"return_string : {return_string}")
 
+				#is_numeric and true
+				if what == "is_numeric" and condition == "true":
+					isTrue = is_numeric_comparator(content, how_many, return_string)
+					if isTrue == True:
+						linksList.append(link)
+
+				#is_numeric and false
+				if what == "is_numeric" and condition == "false":
+					isTrue = is_numeric_comparator(content, how_many, return_string)
+					if isTrue == False:
+						linksList.append(link)
+
 			#if where is in
 			elif where == "in":
 				#if check == string and condition == true
 				if what == "string" and condition == "true":
 					if content in link:
-						#print(link)
+						#print(f"in {link}")
 						linksList.append(link)
 				#if check == string and condition == false
 				if what == "string" and condition == "false":
 					if content not in link:
-						#print(link)
+						#print(f"not in {link}")
 						linksList.append(link)
 
 
@@ -256,8 +314,8 @@ def filterNewSite():
 		#soup = downloadWebPage(website)
 		soup = soupifyHTML('test.html')
 		links = filterWebPage(website, soup)
-		#for link in links:
-	#		print(link)
+		for link in links:
+			print(link)
 
 #the normal procedure for scraping links from a page
 def filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile):
@@ -281,8 +339,8 @@ if __name__ == "__main__":
 	scrapeListFile = "scrapeListConfig.json"
 	targetLinksOutputFile = "links.json"
 
-	filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile)
-	#filterNewSite()
+	#filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile)
+	filterNewSite()
 
 
 
