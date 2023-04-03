@@ -198,6 +198,9 @@ def filterWebPage(rules, soup):
 	for command in rules['commands']:
 		array_of_commands = command.split("|")
 
+		if len(array_of_commands) == 1:
+			continue
+
 		#split the array of commands into seperate variables
 		where = array_of_commands[0] 	#start/end/in?
 		how_many = array_of_commands[1]	#how many of those characters to check/slice indicing
@@ -253,6 +256,32 @@ def filterWebPage(rules, soup):
 						linksList.append(link)
 
 
+
+				#for count and true
+				if what == "count" and condition == "true":
+					operands = content.split(",")
+					number = operands[0]
+					character = operands[1]
+
+					count = link.count(character)
+					if count > int(number):
+						#print(f"count == {count}")
+						linksList.append(link)
+
+				elif what == "count" and condition == "false":
+					operands = content.split(",")
+					number = operands[0]
+					character = operands[1]
+
+					count = link.count(character)
+					if count < (int(number)):
+						#print(f"count == {count}")
+						linksList.append(link)
+
+
+
+
+
 		#then set linksTooFilter to equal linksList
 		linksTooFilter = linksList
 
@@ -270,7 +299,7 @@ def addHTTPStoLinks(rules, linksTooFilter):
 	for link in linksTooFilter:
 		if not link.startswith("https://"):
 			#print(link[8:], "https://", link, f"\n")
-			newLink = str(rules['url']) + link
+			newLink = str(rules['urlForLinks']) + link
 			print(newLink)
 			links.append(newLink)
 		else:
@@ -327,9 +356,9 @@ def filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile):
 		soup = downloadWebPage(websiteRules)
 		links = filterWebPage(websiteRules, soup)
 
+		links = addHTTPStoLinks(websiteRules, links)
 		for link in links:
 			print(link)
-		#links = addHTTPStoLinks(websiteRules, links)
 		#writeLinksTooFile(websiteName, websiteURL, links, targetLinksOutputFile)
 
 
@@ -339,8 +368,8 @@ if __name__ == "__main__":
 	scrapeListFile = "scrapeListConfig.json"
 	targetLinksOutputFile = "links.json"
 
-	#filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile)
-	filterNewSite()
+	filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile)
+	#filterNewSite()
 
 
 
