@@ -300,7 +300,7 @@ def addHTTPStoLinks(rules, linksTooFilter):
 		if not link.startswith("https://"):
 			#print(link[8:], "https://", link, f"\n")
 			newLink = str(rules['urlForLinks']) + link
-			print(newLink)
+			#print(newLink)
 			links.append(newLink)
 		else:
 			links.append(link)
@@ -357,9 +357,10 @@ def filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile):
 		links = filterWebPage(websiteRules, soup)
 
 		links = addHTTPStoLinks(websiteRules, links)
-		for link in links:
-			print(link)
-		#writeLinksTooFile(websiteName, websiteURL, links, targetLinksOutputFile)
+		
+		writeLinksTooFile(websiteName, websiteURL, links, targetLinksOutputFile)
+		#for link in links:
+		#	print(link)
 
 
 if __name__ == "__main__":
