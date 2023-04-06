@@ -1,5 +1,64 @@
+/*prevent defaults*/
+ul,
+li,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    all: unset;
+    display: block;
+}
+
+:root {
+    font-family: 'Cirka';
+    font-weight: 400;
+
+    --page-height:100px;
+
+
+    /* colour variables */
+    --blackest-black: #000000;
+    --black-black: #0A0909;
+    --black: #131211;
+    --less-black: #1C1B1A;
+    --lessest-black: #252422;
+    --darkest-grey: #292825;
+    --jet: #333234;
+    --dark-grey: #2C2B28;
+    --grey: #403D39;
+    --davys-grey: #524E49;
+    --granite-grey: #635f59;
+    --nickel-grey: #757069;
+    --middle-grey: #868179;
+    --silver-grey: #A9a399;
+    --pale-grey: #bbb4a9;
+    --light-grey: #CCC5B9;
+    --off-white: #FFFCF2;
+    --white: #FFFFFF;
+
+    --orange--3: #f4ae93;
+    --orange--2: #f08b64;
+    --orange--1: #ee7648;
+
+    --orange: #EB5E28;
+
+    --orange-1: #c94512;
+    --orange-2: #a83a0f;
+    --orange-3: #7d2b0b;
+    --orange-4: #4d1a07;
+
+}
+
+
 body {
     all: unset;
+    height: 100svh;
+
+
 }
 
 html {
@@ -7,200 +66,129 @@ html {
 }
 
 
-main {
+.fullScreenHidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    display: block;
+    visibility: hidden;
+    opacity: 0%;
+}
+
+.fullScreenVisible {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    display: block;
+    visibility: visible;
+    opacity: 100%;
+}
+
+.containListItems {
     position: relative;
-    height: 100vh;
-    width: 100vw;
-
 }
-
-.tenPercentBox {
-    position: relative;
-    height: 80%;
-    width: 80%;
-    margin-left: 10%;
-    top: 10%;
-    //background-color: yellow;
-}
-
-h1 {
-    all: unset;
-    font-size: 2rem;
-    font-family: sans-serif;
-}
-
-p {
-    all: unset;
-    font-size: 1rem;
-    font-family: sans-serif;
-}
-
-li {
-    padding-left: 1em;
-    margin-bottom: 0.5em;
-}
-
 ul {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 4rem;
+}
+li {
+    position: relative;
+    margin-left: 10%;
+    margin-top: 0.4rem;
+    font-size: 1.5em;
+    color: white;
+    mix-blend-mode: multiply;
+
+    text-transform: uppercase;
+
 }
 
 nav {
-    top: 0%;
     position: relative;
     width: 100%;
-    height: 10%;
-    background-color: lightgrey;
-    outline: 2px solid black;
-    z-index: 10;
-
+    //background-color: var(--jet);
+    border-bottom: 1px solid white;
 }
 
-.scrapeViewContainer {
-    height: 90%;
-    width: 100%;
+h1 {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 5px 1fr;
+    font-family: EditorialOld;
+    font-size: 8em;
+    font-weight: 200;
+
+    color: black;
+    color: white;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+    z-index: 1;
 }
 
-.scrapeViewGridItem {
+.textContentBar {
+    position: relative;    
+    height: 10rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 1;
+
+}
+
+.buttonContainerBox {
     position: relative;
-    height: 100%;
-    overflow: auto;
-    box-sizing: border-box;
-    overflow-x: hidden;
+    height: 6rem;
+    width: 20rem;
+    outline: 1px solid white;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    overflow: hidden;
 }
 
-.child:first-child {
-    grid-column: 1 / 2;
-}
-
-.child:last-child {
-    grid-column: 2 / 3;
-}
-
-.verticalSeperator {
-    position: relative;
-    height: 100%;
-    width: 5px;
-    background-color: black;
-}
-
-
-.backgroundBlue {
-    background-color: blue;
-}
-
-.backgroundRed {
-    background-color: red;
-}
-
-
-
-/*menu  ------------------------------------*/
-.menu {
+.blurBox {
     position: absolute;
-    width: 80%;
-    height: 80%;
-    top: 10%;
-    left: 10%;
-    background-color: darkgrey;
-    z-index: 10000;
-    border-radius: 5px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    display: none;
-}
-
-iframe {
-    border: none;
-}
-
-
-
-/*form  ------------------------------------*/
-
-/* Set up some basic styles for the form */
-form {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
-
-#rows {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+    height: 100%;
     width: 100%;
+    backdrop-filter: blur(100px) invert(1.0) saturate(5.0) sepia(1.0);
+    mix-blend-mode: multiply;
 }
 
-.form-row>div {
-    flex: 1 1 20%;
-    margin-right: 10px;
-}
 
-.form-row>div:last-child {
-    margin-right: 0;
-}
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
 
-select {
-    display: block;
-    width: 20%;
-    //padding: 10px;
-    //font-size: 16px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-.formGuide {
-    display: block;
-    width: 20%;
-    //padding: 10px;
-    //font-size: 16px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-input[type="text"] {
-    display: block;
+/* adding background colour/noise */
+.backgroundContentContainer {
+    position: relative;
+    height: 100lvh;
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
+    overflow: hidden;
+}
+.backgroundImageContainer {
+    position: absolute;
+    /*background texture*/    
+    background-image: url('assets/noise6.png');
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    isolation: isolated;
+    //filter: invert(0.2) saturate(50.0);
 }
 
-#addRowButton {
-    background-color: #2196F3;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
 
-[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
+
+
+
+
+
+
+
+
+

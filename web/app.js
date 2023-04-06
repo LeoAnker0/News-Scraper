@@ -1,59 +1,129 @@
-console.log("cheese")
+function myFunction() {
+    var input = document.getElementById("input").value;
+    eel.python_function(input)(function(ret) {
+        alert(ret);
+    });
+}
 
-const viewMenuButton = document.querySelector('#viewMenuButton');
-const menu = document.querySelector('#menu');
 
-let viewMenuCounter = 0
-    viewMenuButton.addEventListener('click', function() {
-        // execute your desired action here
-        //console.log('View Menu button clicked');
-        if (viewMenuCounter == 0) {
-          menu.style.display = "block";
-          viewMenuCounter = 1
+const pageHeight = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.clientHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+);
 
-        } else {
-          menu.style.display = "none";
-          viewMenuCounter = 0
+document.documentElement.style.setProperty('--page-height', pageHeight + 'px');
+
+
+
+
+//get scrapeListConfig.json-- actually tell python to get the config file, or
+//tell python to get scrapeListConfig.json
+
+
+async function getFileFromPython(wantedFile) {
+    const file = await eel.sendFile(wantedFile)();
+    //console.log(file);
+    return file;
+}
+
+function processAllItemsInJson(jsonFile) {
+    const jsonObject = JSON.parse(jsonFile);
+
+    //add the websites to an array
+    let arrayOfWebsiteNames = []
+    for (const website of jsonObject.websites) {
+        //console.log(website.name);
+        arrayOfWebsiteNames.push(website.name);
+    }
+
+    //add all the website names to the list in index.html
+    //keep track of all these items inside the li array by creating one of
+    //those fancy pancy dom objects arrays or something
+
+    //add the websites to the dispaly
+    let websitesList = document.getElementById('websitesListID');
+    for (let i = 0; i < arrayOfWebsiteNames.length; i++) {
+        let newListItem = document.createElement("li");
+
+        newListItem.innerHTML = arrayOfWebsiteNames[i];
+
+        websitesList.appendChild(newListItem)
+    }
+
+    //add event listeners to all the li's that can distinguish between them all
+    websitesList.addEventListener("click", function(event) {
+        if (event.target.nodeName === "LI") {
+            let target = event.target;
+
+            let name = event.target.textContent;
+            //event.target.textContent = "cheese"
+            //console.log("the ", clickedText, " element was clicked")
+
+            //get the json of that name
+            let jsonOfLI = jsonObject.websites.find(function(obj) {
+                return obj.name === name;
+            });
+
+            hashChange = "rules" + "#" + name
+
+            //console.log(jsonOfLI)
+            //call function that clears the current page and loads the json rules 
+            //editing page
+            //loadEditJsonPage(jsonOfLI)
+            window.history.pushState(null, null, hashChange);
+            //window.location.hash = hashChange;
+
+
         }
-
     });
 
+}
 
-//the code for the form
-// Get the button and the form elements
-const addRowButton = document.getElementById("addRowButton");
-const form = document.getElementById("form");
 
-// Add an event listener to the button
-addRowButton.addEventListener("click", function () {
-  // Create a new row
-  const newRow = document.createElement("div");
-  newRow.classList.add("row");
+//function for loading up the editing pane
+async function loadEditJsonPage(name) {
+    //declare consts
+    const mainJson = "scrapeListConfig.json";
 
-  // Add the HTML for the row
-  newRow.innerHTML = `
-    <select name="where">
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <select name="how_many">
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <select name="condition">
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <select name="command">
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <input type="text" name="content" placeholder="Content">`;
+    //get the config.json from python
+    const jsonFile = await getFileFromPython(mainJson);
 
-  // Append the row to the form
-  form.appendChild(newRow);
-});
+    const jsonObject = JSON.parse(jsonFile);
+    let jsonOfLI = jsonObject.websites.find(function(obj) {
+                return obj.name === name;
+            });
+
+
+    console.log(jsonOfLI)
+}
+
+async function loadMainPane() {
+    let configFile = ""
+
+    //declare consts
+    const mainJson = "scrapeListConfig.json";
+
+    //get the config.json from python
+    configFile = await getFileFromPython(mainJson);
+    //console.log("config file: ", configFile);
+
+    //now go through the json file for all items in the websites list
+    processAllItemsInJson(configFile)
+
+}
+
+
+//really this should be done in an orchestrator function or file, but i'll just call it from here for now
+//loadMainPange
+//loadMainPane()
+
+
+
+
+
+
+
+//
