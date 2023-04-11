@@ -97,7 +97,33 @@ async function loadEditJsonPage(name) {
             });
 
 
-    console.log(jsonOfLI)
+    console.log(jsonOfLI);
+    
+
+
+    //load the details into view
+    //get the name and domain name
+    //get the elements in the html
+    //change the elements inner text to being what it's supposed to be
+    let siteName = jsonOfLI.name;
+    let siteURL = jsonOfLI.url;
+    let siteURLforLinks = jsonOfLI.urlForLinks;
+    let commands = jsonOfLI.commands;
+
+    let siteTag = document.getElementById('contentBoxSiteName');
+    let domainTag = document.getElementById('contentBoxDomainName');
+
+    //change it in the hmtl view
+    siteTag.innerText = siteName;
+    domainTag.innerText = siteURL;
+
+
+    //console log stuff
+    for (let i = 0; i <commands.length; i ++) {
+        console.log(commands[i])
+    }
+
+
 }
 
 async function loadMainPane() {
@@ -117,8 +143,8 @@ async function loadMainPane() {
 
 
 //really this should be done in an orchestrator function or file, but i'll just call it from here for now
-//loadMainPange
-//loadMainPane()
+//loadMainPane
+loadMainPane()
 
 
 

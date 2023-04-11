@@ -96,8 +96,8 @@ async function buildPANEmain() {
     PANEaddRules.classList.remove('fullScreenVisible')
 
     //clear all the content inside, which isn't made by this function
-    removeListItemsById('websitesListID');
-    loadMainPane()
+    //removeListItemsById('websitesListID');
+    //loadMainPane()
 }
 
 //functions for loading individual pages
