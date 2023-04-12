@@ -17,7 +17,8 @@ p {
     font-family: 'Cirka';
     font-weight: 400;
 
-    --page-height:100px;
+    --page-height: 100px;
+    --loader-colour: var(--orange);
 
 
     /* colour variables */
@@ -95,9 +96,11 @@ html {
 .containListItems {
     position: relative;
 }
+
 ul {
     margin-top: 4rem;
 }
+
 li {
     position: relative;
     margin-left: 10%;
@@ -129,6 +132,7 @@ h1 {
     opacity: 0.9;
     z-index: 1;
 }
+
 h3 {
     position: relative;
     font-family: EditorialOld;
@@ -143,6 +147,7 @@ h3 {
     z-index: 1;
     text-transform: uppercase;
 }
+
 p {
     position: relative;
     font-family: EditorialOld;
@@ -157,7 +162,7 @@ p {
 }
 
 .textContentBar {
-    position: relative;    
+    position: relative;
     height: 7rem;
     padding: 1rem;
     padding-left: 2rem;
@@ -197,11 +202,15 @@ p {
     width: 100%;
     overflow: hidden;
 }
+
 .backgroundImageContainer {
     position: absolute;
-    background: #000046;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(-45deg, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(-45deg, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #000046;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(-45deg, #1CB5E0, #000046);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(-45deg, #1CB5E0, #000046);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     width: 100%;
     height: 100%;
@@ -241,6 +250,7 @@ p {
 
     /*css grid stuff*/
     display: grid;
+    grid-template-columns: 1fr 2px minmax(0, 600px);
     grid-template-columns: 1fr 1px 1fr;
     grid-template-rows: auto;
 }
@@ -251,6 +261,27 @@ p {
     height: 100%;
     overflow: hidden;
 }
+
+.MAINrulesLeft-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.MAINrulesLeft-li {
+    position: relative;
+    text-transform: unset;
+    list-style: none;
+    white-space: nowrap;
+    min-width: 100%;
+    overflow: hidden;
+
+    display: inline-block;
+    margin-right: 4rem;
+}
+
+
 
 .MAINrulesCentre {
     position: relative;
@@ -269,13 +300,69 @@ p {
     overflow: hidden;
 }
 
+.MAINrulesRight-rules {
+    position: absolute;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+}
 
+.MAINrulesRight-iFrame {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
 
+}
 
+.MAINrulesRight-iFrame-element {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
 
+/* loader styles */
 
+#loader {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    overflow: hidden;
+    background-color: transparent;
+    top: 2px;
+    z-index: 100000000000000;
 
+    opacity: 0;
+    display: none;
+    visibility: hidden;
 
+    transition: opacity 0.3s ease-in-out;
+}
+
+#loader.show {
+    opacity: 1;
+    display: block;
+    visibility: visible;
+}
+
+#loader span {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: var(--loader-colour);
+    animation: loader 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes loader {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
 
 
 

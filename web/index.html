@@ -50,10 +50,22 @@
                         </div>
                     </div>
                 </div>
+                <div id="loader">
+                  <span></span>
+                </div>
             </nav>
             <div class="MAINrules">
               <!-- feature the links outputs from the filters  -->
               <div class="MAINrulesLeft">
+                <div class="MAINrulesLeft-content">
+                  <div class="containListItems">
+                    <ul id="MAINrulesLeftWebsitesListID">
+                      <!-- contains li items when hydrated by JS -->
+                      
+                    </ul>
+                </div>
+
+                </div>
               </div>
 
               <!-- be a vertical split between the left and right side -->
@@ -62,14 +74,23 @@
 
               <!-- contain both the view of an iframe, as well as the rules when they are being edited -->
               <div class="MAINrulesRight">
-                <!-- i frame, but really an object -->
-                <div class="MAINrulesRight-iFrame">
-                  <object></object>
-                </div>
-
                 <!-- rules container -->
                 <div class="MAINrulesRight-rules">
                 </div>
+
+                <div class="MAINrulesRight-iFrame-placeholder">
+                </div>
+
+                <!-- i frame -->
+                <div class="MAINrulesRight-iFrame">
+                  <iframe 
+                    class="MAINrulesRight-iFrame-element"
+                    id="MAINrulesRightIframeID" 
+                    src=""
+                    onload="resizeIframe(this)" 
+                  ></iframe>
+                </div>
+
               </div>
 
             </div>

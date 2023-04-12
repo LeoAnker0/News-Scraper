@@ -15,3 +15,8 @@ node_modules
 
 package.json
 package-lock.json
+
+
+#temp-downloads contents
+temp-downloads/*
+!temp-downloads/cacheList.json

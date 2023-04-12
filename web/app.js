@@ -93,12 +93,12 @@ async function loadEditJsonPage(name) {
 
     const jsonObject = JSON.parse(jsonFile);
     let jsonOfLI = jsonObject.websites.find(function(obj) {
-                return obj.name === name;
-            });
+        return obj.name === name;
+    });
 
 
     console.log(jsonOfLI);
-    
+
 
 
     //load the details into view
@@ -117,15 +117,127 @@ async function loadEditJsonPage(name) {
     siteTag.innerText = siteName;
     domainTag.innerText = siteURL;
 
-
+    /*
     //console log stuff
     for (let i = 0; i <commands.length; i ++) {
         console.log(commands[i])
     }
+    */
+
+
+    //dealing with the websites list stuff...
+    listOfWebsitesToAdd = ['https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan', 'https://www.dr.dk/nyheder/udland/loekke-efter-omstridt-macron-udtalelse-jeg-ville-selv-have-udtrykt-mig-paa-en', 'https://www.dr.dk/nyheder/indland/alvorligt-syge-tarmkraeftpatienter-blev-fejlinformeret-om-livsvigtig-operation-i']
+    loadAndCreateListForRules(listOfWebsitesToAdd)
+    /*
+    lets do this all in a new function, for cleanliness
+    */
+
+    //create a fake list here first for testing purposeses
+    /*make sure it so that you use a list to populate another list, since this will be the 
+    most easy to make work when we integrate it with the other parts*/
+
+    //make that list populate the list in html
+
+    //make sure that there are either two well linked lists, or that there's some way of better
+    ///represeting the data, since i would like to be able to show how the link shows up in 
+    ///the scraper, whilst also being able to actually link them into being, so i will need to
+    ///have some system that checks wether they have a https already, or not, and then apply a valid
+    ///a valid pre-https for them.
+
+    //make a simple function that when one of those links is clicked will then tell the python
+    ///to download the file, and then to add the html to temp-downloads.
+    ///and ideally it should only have to download a specifc link once
+    ///and also it should be relatively snappy, so therefore we might need to use the requests library
+    ///instead of selenium, since selenium is slow, but i can try benchmarking that before i say anything
+    ///particularly rash
+
+    //then the local cached version should be set as the path for the previewing iframe
+    ///this should make the rules be hidden
+
+    /*and then after we should start adding the functionality where we can actually cached a real
+    version of the file that we want to scrape the links from, and then we can start doing all the 
+    rules things and so on, but we can get this key piece of infrastructure up and running first*/
+
 
 
 }
 
+function loadAndCreateListForRules(listOfWebsitesToAdd) {
+    console.log("loadAndCreateListForRules")
+    console.log(listOfWebsitesToAdd)
+
+    //declare the ul and li
+    let websitesList = document.getElementById('MAINrulesLeftWebsitesListID');
+
+    websitesList.innerHTML = "";
+
+    //go through each item in the list and add them to the html ul as li's
+    for (let i = 0; i < listOfWebsitesToAdd.length; i++) {
+        let newListItem = document.createElement("li");
+
+        newListItem.innerHTML = listOfWebsitesToAdd[i];
+        newListItem.classList.add("MAINrulesLeft-li");
+
+        websitesList.appendChild(newListItem);
+    }
+
+
+    //now add detection for which item has been clicked
+    //add event listeners to all the li's that can distinguish between them all
+    websitesList.addEventListener("click", function(event) {
+        if (event.target.nodeName === "LI") {
+            let target = event.target;
+
+            let url = event.target.textContent;
+
+            //console.log(url)
+
+            sendLinkToPythonToBeDownloadedAndLoaded(url)
+
+            //create an async function that can deal with the python/time delay stuff
+
+
+
+
+
+        }
+    });
+}
+
+
+function showLoader() {
+    var loader = document.getElementById("loader");
+    loader.classList.add("show");
+}
+
+function hideLoader() {
+    var loader = document.getElementById("loader");
+    loader.classList.remove("show");
+}
+
+async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
+    console.log(url)
+    //send the url to le python to be downloaded
+
+    showLoader()
+    async function downloadURLandReturnHTML(url) {
+        htmlPath = await eel.downloadURLandReturnHTML(url)();
+        
+        return htmlPath
+    }
+
+    filePath = await downloadURLandReturnHTML(url)
+    console.log(filePath)
+
+    //set the src of the iframe to this htmlPath
+    let iframeObject = document.getElementById('MAINrulesRightIframeID');
+    iframeObject.src = filePath
+    hideLoader()
+
+}
+
+
+/* for loading in the main pane */
 async function loadMainPane() {
     let configFile = ""
 
@@ -145,6 +257,39 @@ async function loadMainPane() {
 //really this should be done in an orchestrator function or file, but i'll just call it from here for now
 //loadMainPane
 loadMainPane()
+
+
+
+
+
+//resize the iframes contents to being smaller
+function resizeIframe(iframe) {
+    // Wait for the iframe's document to finish loading
+    iframe.addEventListener('load', function() {
+        // Get the iframe's document
+        var doc = iframe.contentDocument || iframe.contentWindow.document;
+
+        // Create a new stylesheet
+        var style = doc.createElement('style');
+        style.type = 'text/css';
+
+        // Set the font size to 50%
+        style.innerHTML = 'html { font-size: 50%; }';
+
+        // Add the stylesheet to the iframe's document
+        doc.head.appendChild(style);
+    });
+}
+var iframe = document.getElementById('MAINrulesRightIframeID');
+
+// Wait for the iframe to load
+iframe.addEventListener('load', function() {
+    // Overwrite the console.log method of the iframe's document to a no-op function
+    iframe.contentWindow.console.log = function() {};
+});
+
+
+
 
 
 

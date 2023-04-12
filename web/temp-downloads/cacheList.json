@@ -1,0 +1,24 @@
+{
+    "cachedSites": [
+        {
+            "url": "https://example.com",
+            "filepath": "temp-downloads/example.html",
+            "cacheDate": "111100001111000"
+        },
+        {
+            "url": "https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan",
+            "filepath": "temp-downloads/NBEE-1681342636726.html",
+            "cacheDate": 1681342636727
+        },
+        {
+            "url": "https://www.dr.dk/nyheder/udland/loekke-efter-omstridt-macron-udtalelse-jeg-ville-selv-have-udtrykt-mig-paa-en",
+            "filepath": "temp-downloads/MCYO-1681342641276.html",
+            "cacheDate": 1681342641276
+        },
+        {
+            "url": "https://www.dr.dk/nyheder/indland/alvorligt-syge-tarmkraeftpatienter-blev-fejlinformeret-om-livsvigtig-operation-i",
+            "filepath": "temp-downloads/NOKA-1681342644865.html",
+            "cacheDate": 1681342644866
+        }
+    ]
+}
