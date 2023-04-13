@@ -2,6 +2,7 @@ import eel
 import json
 from datetime import datetime, timedelta
 import os
+import time
 
 from htmlDownloader import downloadAndProcessPageToFile
 
@@ -112,7 +113,7 @@ def downloadURLandReturnHTML(url):
         if cachedURL == url and time_diff < timedelta(days=7):
             #since it matches, return the cachedPath
             #print(cachedPath)
-
+            #time.sleep(3)
             return cachedPath
 
     #actully go and cache the file

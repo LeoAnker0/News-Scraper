@@ -320,6 +320,21 @@ p {
     height: 100%;
     width: 100%;
 }
+.MAINrulesRight-iFrame-placeholder {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    backdrop-filter: blur(0px) brightness(1.0) grayscale(0.0) sepia(0.0);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, backdrop-filter 0.7s linear;
+
+}
+.MAINrulesRight-iFrame-placeholder.filter-applied {
+  /* Apply the filter */
+  backdrop-filter: blur(12px) brightness(0.7) grayscale(0.7) sepia(0.3);
+  opacity: 1;
+}
 
 /* loader styles */
 

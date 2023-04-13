@@ -215,11 +215,24 @@ function hideLoader() {
     loader.classList.remove("show");
 }
 
+function togglePlaceholderStyles() {
+  var placeholder = document.querySelector('.MAINrulesRight-iFrame-placeholder');
+
+  if (placeholder.classList.contains('filter-applied')) {
+    // Remove the filter class to remove the filter
+    placeholder.classList.remove('filter-applied');
+  } else {
+    // Add the filter class to apply the filter
+    placeholder.classList.add('filter-applied');
+  }
+}
+
 async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
     console.log(url)
     //send the url to le python to be downloaded
 
     showLoader()
+    togglePlaceholderStyles()
     async function downloadURLandReturnHTML(url) {
         htmlPath = await eel.downloadURLandReturnHTML(url)();
         
@@ -233,6 +246,7 @@ async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
     let iframeObject = document.getElementById('MAINrulesRightIframeID');
     iframeObject.src = filePath
     hideLoader()
+    togglePlaceholderStyles()
 
 }
 
