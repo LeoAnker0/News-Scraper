@@ -113,7 +113,7 @@ def downloadURLandReturnHTML(url):
         if cachedURL == url and time_diff < timedelta(days=7):
             #since it matches, return the cachedPath
             #print(cachedPath)
-            #time.sleep(3)
+            #time.sleep(1)
             return cachedPath
 
     #actully go and cache the file

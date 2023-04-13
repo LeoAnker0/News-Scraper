@@ -166,6 +166,10 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
     console.log("loadAndCreateListForRules")
     console.log(listOfWebsitesToAdd)
 
+    //set the src of the iframe to be empty
+    let iframeObject = document.getElementById('MAINrulesRightIframeID');
+    iframeObject.src = "";
+
     //declare the ul and li
     let websitesList = document.getElementById('MAINrulesLeftWebsitesListID');
 
