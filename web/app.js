@@ -126,7 +126,7 @@ async function loadEditJsonPage(name) {
 
 
     //dealing with the websites list stuff...
-    listOfWebsitesToAdd = ['https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan', 'https://www.dr.dk/nyheder/udland/loekke-efter-omstridt-macron-udtalelse-jeg-ville-selv-have-udtrykt-mig-paa-en', 'https://www.dr.dk/nyheder/indland/alvorligt-syge-tarmkraeftpatienter-blev-fejlinformeret-om-livsvigtig-operation-i']
+    listOfWebsitesToAdd = ['https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan', 'https://www.dr.dk/nyheder/udland/loekke-efter-omstridt-macron-udtalelse-jeg-ville-selv-have-udtrykt-mig-paa-en', 'https://www.dr.dk/nyheder/indland/alvorligt-syge-tarmkraeftpatienter-blev-fejlinformeret-om-livsvigtig-operation-i', 'https://www.bbc.co.uk/news/live/world-us-canada-65270164', 'https://www.nrk.no/sport/nrk-erfarer_-age-hareide-blir-islandsk-landslagssjef-1.16372979', 'https://www.svt.se/nyheter/utrikes/ung-man-pekas-ut-ska-ligga-bakom-lackan-av-hemliga-dokument']
     loadAndCreateListForRules(listOfWebsitesToAdd)
     /*
     lets do this all in a new function, for cleanliness
@@ -163,11 +163,14 @@ async function loadEditJsonPage(name) {
 }
 
 function setIframeFontFamily(iframeId, fontFamily) {
-  const iframe = document.getElementById(iframeId);
-  const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-  const style = iframeDocument.createElement('style');
-  style.textContent = `* { font-family: ${fontFamily} !important; }`;
-  iframeDocument.head.appendChild(style);
+    const iframe = document.getElementById(iframeId);
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    const style = iframeDocument.createElement('style');
+    //style.textContent = `* { font-family: ${fontFamily} !important; }`;
+    style.textContent = `* { background-color: transparent !important;color: white !important;  }`;
+    
+    iframeDocument.head.appendChild(style);
+
 }
 
 function loadAndCreateListForRules(listOfWebsitesToAdd) {
@@ -227,15 +230,15 @@ function hideLoader() {
 }
 
 function togglePlaceholderStyles() {
-  var placeholder = document.querySelector('.MAINrulesRight-iFrame-placeholder');
+    var placeholder = document.querySelector('.MAINrulesRight-iFrame-placeholder');
 
-  if (placeholder.classList.contains('filter-applied')) {
-    // Remove the filter class to remove the filter
-    placeholder.classList.remove('filter-applied');
-  } else {
-    // Add the filter class to apply the filter
-    placeholder.classList.add('filter-applied');
-  }
+    if (placeholder.classList.contains('filter-applied')) {
+        // Remove the filter class to remove the filter
+        placeholder.classList.remove('filter-applied');
+    } else {
+        // Add the filter class to apply the filter
+        placeholder.classList.add('filter-applied');
+    }
 }
 
 async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
@@ -246,7 +249,7 @@ async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
     togglePlaceholderStyles()
     async function downloadURLandReturnHTML(url) {
         htmlPath = await eel.downloadURLandReturnHTML(url)();
-        
+
         return htmlPath
     }
 
@@ -256,19 +259,19 @@ async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
     //set the src of the iframe to this htmlPath
     let iframeObject = document.getElementById('MAINrulesRightIframeID');
     iframeObject.src = filePath
-    hideLoader()
-    togglePlaceholderStyles()
 
     //change the text of the preview site text
     let previewSiteLinkText = document.getElementById('MAINrulesRightIframeLinkText');
 
     previewSiteLinkText.innerText = url;
 
-    /*  changes the font of the iframes content, a bit silly...
+    // changes the font of the iframes content, a bit silly...
     iframeObject.addEventListener('load', () => {
       setIframeFontFamily('MAINrulesRightIframeID', 'Arial');
     });
-    */
+    
+    hideLoader()
+    togglePlaceholderStyles()
 
 }
 

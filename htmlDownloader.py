@@ -92,6 +92,11 @@ def removeHrefsFromA(html):
     for a in soup.find_all('a'):
         del a['href']
 
+
+    #removes the script tags for le speed and also incase they should be doing something silly
+    for script in soup.find_all('script'):
+        script.decompose()
+
     #return the processed html
     processedHTML = str(soup)
 
@@ -110,6 +115,7 @@ def replace_external_fonts(html, font_name, font_path):
 
 def downloadAndProcessPageToFile(url):
     html = downloadPageUsingRequests(url)
+    #html = downloadPageUsingSelenium(url)
 
     #using bs4 process the html and remove all hrefs of the all a tags
     html = removeHrefsFromA(html)
