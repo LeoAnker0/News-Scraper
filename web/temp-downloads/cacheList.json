@@ -4,6 +4,21 @@
             "url": "https://example.com",
             "filepath": "temp-downloads/example.html",
             "cacheDate": "111100001111000"
+        },
+        {
+            "url": "https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan",
+            "filepath": "temp-downloads/HIHN-1681395305611.html",
+            "cacheDate": 1681395305612
+        },
+        {
+            "url": "https://www.dr.dk/nyheder/indland/alvorligt-syge-tarmkraeftpatienter-blev-fejlinformeret-om-livsvigtig-operation-i",
+            "filepath": "temp-downloads/ESJD-1681395466937.html",
+            "cacheDate": 1681395466938
+        },
+        {
+            "url": "https://www.dr.dk/nyheder/udland/loekke-efter-omstridt-macron-udtalelse-jeg-ville-selv-have-udtrykt-mig-paa-en",
+            "filepath": "temp-downloads/EVNJ-1681395473280.html",
+            "cacheDate": 1681395473281
         }
     ]
 }

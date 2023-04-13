@@ -162,6 +162,14 @@ async function loadEditJsonPage(name) {
 
 }
 
+function setIframeFontFamily(iframeId, fontFamily) {
+  const iframe = document.getElementById(iframeId);
+  const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+  const style = iframeDocument.createElement('style');
+  style.textContent = `* { font-family: ${fontFamily} !important; }`;
+  iframeDocument.head.appendChild(style);
+}
+
 function loadAndCreateListForRules(listOfWebsitesToAdd) {
     console.log("loadAndCreateListForRules")
     console.log(listOfWebsitesToAdd)
@@ -169,7 +177,6 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
     //set the src of the iframe to be empty
     let iframeObject = document.getElementById('MAINrulesRightIframeID');
     iframeObject.src = "";
-
     //declare the ul and li
     let websitesList = document.getElementById('MAINrulesLeftWebsitesListID');
 
@@ -252,6 +259,17 @@ async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
     hideLoader()
     togglePlaceholderStyles()
 
+    //change the text of the preview site text
+    let previewSiteLinkText = document.getElementById('MAINrulesRightIframeLinkText');
+
+    previewSiteLinkText.innerText = url;
+
+    /*  changes the font of the iframes content, a bit silly...
+    iframeObject.addEventListener('load', () => {
+      setIframeFontFamily('MAINrulesRightIframeID', 'Arial');
+    });
+    */
+
 }
 
 
@@ -280,24 +298,7 @@ loadMainPane()
 
 
 
-//resize the iframes contents to being smaller
-function resizeIframe(iframe) {
-    // Wait for the iframe's document to finish loading
-    iframe.addEventListener('load', function() {
-        // Get the iframe's document
-        var doc = iframe.contentDocument || iframe.contentWindow.document;
 
-        // Create a new stylesheet
-        var style = doc.createElement('style');
-        style.type = 'text/css';
-
-        // Set the font size to 50%
-        style.innerHTML = 'html { font-size: 50%; }';
-
-        // Add the stylesheet to the iframe's document
-        doc.head.appendChild(style);
-    });
-}
 var iframe = document.getElementById('MAINrulesRightIframeID');
 
 // Wait for the iframe to load

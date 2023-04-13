@@ -319,6 +319,7 @@ p {
     position: relative;
     height: 100%;
     width: 100%;
+    border: none;
 }
 .MAINrulesRight-iFrame-placeholder {
     position: absolute;
@@ -337,8 +338,29 @@ p {
   opacity: 1;
 }
 
-/* loader styles */
+.MAINrulesRight-iFrame-link-container {
+    position: relative;
+    width: 100%;
+    padding: 0.5rem;
+}
+.MAINrulesRight-iFrame-link-text {
+    position: relative;
+    color: white;
+    width: 95%;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
 
+    
+    /* different font settings for readability and compactness
+    font-family: 'helvetica';
+
+    font-size: 0.75em;
+    */
+
+}
+
+/* loader styles */
 #loader {
     width: 100%;
     height: 3px;
