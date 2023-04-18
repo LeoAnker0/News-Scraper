@@ -4,26 +4,6 @@
             "url": "https://example.com",
             "filepath": "temp-downloads/example.html",
             "cacheDate": "111100001111000"
-        },
-        {
-            "url": "https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan",
-            "filepath": "temp-downloads/DZXP-1681827853576.html",
-            "cacheDate": 1681827853577
-        },
-        {
-            "url": "https://www.bbc.co.uk/news/live/world-us-canada-65270164",
-            "filepath": "temp-downloads/AIPR-1681827859721.html",
-            "cacheDate": 1681827859725
-        },
-        {
-            "url": "https://www.nrk.no/sport/nrk-erfarer_-age-hareide-blir-islandsk-landslagssjef-1.16372979",
-            "filepath": "temp-downloads/YTJV-1681827872864.html",
-            "cacheDate": 1681827872866
-        },
-        {
-            "url": "https://www.svt.se/nyheter/utrikes/ung-man-pekas-ut-ska-ligga-bakom-lackan-av-hemliga-dokument",
-            "filepath": "temp-downloads/MLDA-1681827883496.html",
-            "cacheDate": 1681827883496
         }
     ]
 }

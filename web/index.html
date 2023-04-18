@@ -8,6 +8,7 @@
     <script type="text/javascript" src="/eel.js"></script>
     <script defer type="text/javascript" src="app.js"></script>
     <script defer type="text/javascript" src="router.js"></script>
+    <script defer type="text/javascript" src="styles.js"></script>
     <script type="text/javascript">
     //resize the iframes contents to being smaller
     function resizeIframe(iframe) {
@@ -70,35 +71,40 @@
                         <div class="contentBox">
                             <form>
                                 <div class="checkbox-grid">
-
                                     <div class="checkbox-group">
-
                                         <div class="checkbox-container">
-                                            <input type="checkbox" id="checkbox1" name="checkbox1" value="value1">
+                                            <input type="checkbox" id="checkbox1" name="checkbox1" value="value1" class="checkbox-element">
                                             <label for="checkbox1"></label>
                                         </div>
-                                        
                                         <div class="label-container">
-                                            <label for="checkbox1">Label 1</label>
+                                            <label for="checkbox1" class="non-selectable">Label 1 and then</label>
                                         </div>
                                     </div>
-
                                     <div class="checkbox-group">
                                         <div class="checkbox-container">
-                                            <input type="checkbox" id="checkbox2" name="checkbox2" value="value2">
+                                            <input type="checkbox" id="checkbox2" name="checkbox2" value="value2" class="checkbox-element">
                                             <label for="checkbox2"></label>
                                         </div>
                                         <div class="label-container">
-                                            <label for="checkbox2">Label 2</label>
+                                            <label for="checkbox2" class="non-selectable">Label 2</label>
                                         </div>
                                     </div>
                                     <div class="checkbox-group">
                                         <div class="checkbox-container">
-                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="value3">
+                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="value3" class="checkbox-element">
                                             <label for="checkbox3"></label>
                                         </div>
                                         <div class="label-container">
-                                            <label for="checkbox3">Label 3</label>
+                                            <label for="checkbox3" class="non-selectable">Label 3</label>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="checkbox4" name="checkbox4" value="value4" class="checkbox-element">
+                                            <label for="checkbox4"></label>
+                                        </div>
+                                        <div class="label-container">
+                                            <label for="checkbox4" class="non-selectable">Label 4</label>
                                         </div>
                                     </div>
                                 </div>

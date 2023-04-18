@@ -69,6 +69,17 @@ html {
     all: unset;
 }
 
+.non-selectable {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Standard syntax */
+}
+
 
 .fullScreenHidden {
     position: absolute;
@@ -414,11 +425,21 @@ p {
 /* check boxes styling */
 /* Style for the checkbox grid */
 .checkbox-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20px, 4rem));
-    grid-gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
     height: 100%;
     width: 100%;
+
+}
+
+.checkbox-group {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    //height: 100%;
+    //width: 100%;
+    //background-color: blue;
 }
 
 /* Style for the checkbox container */
@@ -426,10 +447,10 @@ p {
     --bg-checkbox: var(--pale-grey);
 
     position: relative;
-    display: flex;
+    display: inline-block;
     align-items: center;
     margin: 10px;
-    width: 100%;
+    width: 75px;
     height: 25px;
 
     border-radius: 80px;
@@ -469,26 +490,33 @@ p {
 /* Style for the checkbox tick icon when checked */
 .checkbox-container input[type="checkbox"]:checked+label:before {
     left: calc(100% - 24px);
-    background-color: #52c41a;
     border-color: var(--off-white);
 }
 
 /* Style for the label container */
 .label-container {
-    font-size: 12px;
+    font-size: 16px;
     margin: 0;
     cursor: pointer;
+
 
     position: relative;
     transition: all 0.3s ease-in-out;
     //background-color: #fff;
     border-radius: 4px;
     padding: 5px;
+    padding-top: 15px;
     display: inline-block;
-    float: left;
+    //float: left;
+
     align-items: center;
     width: calc(100% - 17px);
     color: white;
+
+}
+
+.checked-javascript {
+    background-color: var(--orange);
 }
 
 /* Style for the label container when checked */
@@ -498,6 +526,12 @@ p {
     color: black;
 }
 
+
+/* Style for the label container when checked and hovered */
+.checkbox-container input[type="checkbox"]:checked+.label-container:hover {
+    background-color: #52c41a;
+    color: #fff;
+}
 
 /* Style for the label container when checked and hovered */
 .checkbox-container input[type="checkbox"]:checked+.label-container:hover {
