@@ -118,7 +118,8 @@ def downloadAndProcessPageToFile(url):
     #html = downloadPageUsingSelenium(url)
 
     #using bs4 process the html and remove all hrefs of the all a tags
-    html = removeHrefsFromA(html)
+    
+    #html = removeHrefsFromA(html)
 
     #change the fonts to reduce time to load
     #fontPath = './web/fonts/CirkaVariable.ttf'

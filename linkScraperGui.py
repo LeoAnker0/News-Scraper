@@ -3,6 +3,7 @@ import json
 from datetime import datetime, timedelta
 import os
 import time
+import fnmatch
 
 from htmlDownloader import downloadAndProcessPageToFile
 
@@ -140,6 +141,37 @@ def downloadURLandReturnHTML(url):
 
 
 eel.init("web")
+
+
+#when the window is closed, this will allow me to clear the temp temp cache
+@eel.expose
+def onWindowClose():
+    #print("Window has been closed")
+
+    #
+    directoryToRemove = "web/temp-downloads/cache"
+    deleteAllHTMLfiles(directoryToRemove)
+
+
+def deleteAllHTMLfiles(directoryToRemove):
+    # Define the pattern for files to be deleted
+    current_dir = os.getcwd()
+
+    pattern = "*.html"
+
+    # Get the current directory
+    # Change the current working directory to "temp-downloads"
+    os.chdir(directoryToRemove)
+
+    # Get a list of all files in the current directory that match the pattern
+    files_to_delete = [os.path.join(os.getcwd(), file) for file in os.listdir(os.getcwd()) if fnmatch.fnmatch(file, pattern)]
+
+    # Delete each file
+    for file in files_to_delete:
+        os.remove(file)
+
+    #change back to original directory
+    os.chdir(current_dir)
 
 
 @eel.expose

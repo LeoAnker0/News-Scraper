@@ -21,3 +21,4 @@ package-lock.json
 temp-downloads/*
 !temp-downloads/cacheList.json
 !temp-downloads/emptyCache.py
+!temp-downloads/cache
