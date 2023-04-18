@@ -126,11 +126,7 @@ def downloadURLandReturnHTML(url):
         data = json.load(f)
 
     # Append the new cached site to the array
-    new_site = {
-        "url": url,
-        "filepath": filePath,
-        "cacheDate": timeStamp
-    }
+    new_site = {"url": url, "filepath": filePath, "cacheDate": timeStamp}
     data["cachedSites"].append(new_site)
 
     # Write the updated Python object back to the JSON file
@@ -148,7 +144,6 @@ eel.init("web")
 def onWindowClose():
     #print("Window has been closed")
 
-    #
     directoryToRemove = "web/temp-downloads/cache"
     deleteAllHTMLfiles(directoryToRemove)
 
@@ -164,7 +159,10 @@ def deleteAllHTMLfiles(directoryToRemove):
     os.chdir(directoryToRemove)
 
     # Get a list of all files in the current directory that match the pattern
-    files_to_delete = [os.path.join(os.getcwd(), file) for file in os.listdir(os.getcwd()) if fnmatch.fnmatch(file, pattern)]
+    files_to_delete = [
+        os.path.join(os.getcwd(), file) for file in os.listdir(os.getcwd())
+        if fnmatch.fnmatch(file, pattern)
+    ]
 
     # Delete each file
     for file in files_to_delete:

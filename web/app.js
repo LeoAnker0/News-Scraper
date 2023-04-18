@@ -114,8 +114,8 @@ async function loadEditJsonPage(name) {
     let domainTag = document.getElementById('contentBoxDomainName');
 
     //change it in the hmtl view
-    siteTag.innerText = siteName;
-    domainTag.innerText = siteURL;
+        //siteTag.innerText = siteName;
+        //domainTag.innerText = siteURL;
 
     /*
     //console log stuff

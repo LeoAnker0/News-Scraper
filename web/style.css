@@ -16,6 +16,7 @@ p {
 :root {
     font-family: 'Cirka';
     font-weight: 400;
+    color: white;
 
     --page-height: 100px;
     --loader-colour: var(--orange);
@@ -176,7 +177,7 @@ p {
 .buttonContainerBox {
     position: relative;
     height: 6rem;
-    width: 20rem;
+    width: 40rem;
     outline: 1px solid white;
     margin-left: 2rem;
     margin-top: 1rem;
@@ -233,7 +234,7 @@ p {
 
 .contentBox {
     position: relative;
-    margin: 1rem;
+    //margin: 1rem;
     z-index: 100000000000000;
 
 }
@@ -323,6 +324,7 @@ p {
     width: 100%;
     border: none;
 }
+
 .MAINrulesRight-iFrame-placeholder {
     position: absolute;
     height: 100%;
@@ -333,11 +335,12 @@ p {
     transition: opacity 0.3s ease-in-out, backdrop-filter 0.7s linear;
 
 }
+
 .MAINrulesRight-iFrame-placeholder.filter-applied {
-  /* Apply the filter */
+    /* Apply the filter */
     z-index: 10000;
-  backdrop-filter: blur(12px) brightness(0.7) grayscale(0.7) sepia(0.3);
-  opacity: 1;
+    backdrop-filter: blur(12px) brightness(0.7) grayscale(0.7) sepia(0.3);
+    opacity: 1;
 }
 
 .MAINrulesRight-iFrame-link-container {
@@ -345,6 +348,7 @@ p {
     width: 100%;
     padding: 0.5rem;
 }
+
 .MAINrulesRight-iFrame-link-text {
     position: relative;
     color: white;
@@ -353,7 +357,7 @@ p {
     overflow-x: hidden;
     white-space: nowrap;
 
-    
+
     /* different font settings for readability and compactness
     font-family: 'helvetica';
 
@@ -407,3 +411,96 @@ p {
 
 
 
+/* check boxes styling */
+/* Style for the checkbox grid */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 4rem));
+    grid-gap: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+/* Style for the checkbox container */
+.checkbox-container {
+    --bg-checkbox: var(--pale-grey);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    width: 100%;
+    height: 25px;
+
+    border-radius: 80px;
+
+    outline: 1px solid var(--dark-grey);
+
+    background-color: var(--bg-checkbox);
+}
+
+/* Style for the checkbox input */
+.checkbox-container input[type="checkbox"] {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    visibility: hidden;
+
+    display: inline-block;
+
+}
+
+/* Style for the checkbox tick icon */
+.checkbox-container label:before {
+    content: "";
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid var(--middle-grey);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Style for the checkbox tick icon when checked */
+.checkbox-container input[type="checkbox"]:checked+label:before {
+    left: calc(100% - 24px);
+    background-color: #52c41a;
+    border-color: var(--off-white);
+}
+
+/* Style for the label container */
+.label-container {
+    font-size: 12px;
+    margin: 0;
+    cursor: pointer;
+
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    //background-color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+    display: inline-block;
+    float: left;
+    align-items: center;
+    width: calc(100% - 17px);
+    color: white;
+}
+
+/* Style for the label container when checked */
+.checkbox-container input[type="checkbox"]:checked+.label-container {
+    background-color: #52c41a;
+    color: #fff;
+    color: black;
+}
+
+
+/* Style for the label container when checked and hovered */
+.checkbox-container input[type="checkbox"]:checked+.label-container:hover {
+    background-color: #52c41a;
+    color: #fff;
+}

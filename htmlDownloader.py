@@ -115,10 +115,12 @@ def replace_external_fonts(html, font_name, font_path):
 
 def downloadAndProcessPageToFile(url):
     html = downloadPageUsingRequests(url)
+    stringified_html = html.decode('utf-8')
+    html = str(stringified_html)
     #html = downloadPageUsingSelenium(url)
 
     #using bs4 process the html and remove all hrefs of the all a tags
-    
+
     #html = removeHrefsFromA(html)
 
     #change the fonts to reduce time to load
@@ -130,7 +132,6 @@ def downloadAndProcessPageToFile(url):
     #add functionality where if the requests download wasn't good enough, you can
     #do it in selenium, but it just takes 10 times longer...
 
-    #stringified_html = html.decode('utf-8')
 
     directory = "web/temp-downloads/"
 

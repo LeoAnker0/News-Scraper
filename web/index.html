@@ -29,7 +29,7 @@
     }
     </script>
     <script>
-window.addEventListener('unload', function() {
+        window.addEventListener('unload', function() {
     eel.onWindowClose();
 });
 </script>
@@ -68,8 +68,41 @@ window.addEventListener('unload', function() {
                         <!-- blur box -->
                         <div class="blurBox"></div>
                         <div class="contentBox">
-                            <h3 id="contentBoxSiteName">Site</h3>
-                            <h3 id="contentBoxDomainName">Domain Name</h3>
+                            <form>
+                                <div class="checkbox-grid">
+
+                                    <div class="checkbox-group">
+
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="checkbox1" name="checkbox1" value="value1">
+                                            <label for="checkbox1"></label>
+                                        </div>
+                                        
+                                        <div class="label-container">
+                                            <label for="checkbox1">Label 1</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="checkbox2" name="checkbox2" value="value2">
+                                            <label for="checkbox2"></label>
+                                        </div>
+                                        <div class="label-container">
+                                            <label for="checkbox2">Label 2</label>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="checkbox3" name="checkbox3" value="value3">
+                                            <label for="checkbox3"></label>
+                                        </div>
+                                        <div class="label-container">
+                                            <label for="checkbox3">Label 3</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
