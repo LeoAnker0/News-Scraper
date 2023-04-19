@@ -114,8 +114,8 @@ async function loadEditJsonPage(name) {
     let domainTag = document.getElementById('contentBoxDomainName');
 
     //change it in the hmtl view
-        //siteTag.innerText = siteName;
-        //domainTag.innerText = siteURL;
+    //siteTag.innerText = siteName;
+    //domainTag.innerText = siteURL;
 
     /*
     //console log stuff
@@ -123,6 +123,8 @@ async function loadEditJsonPage(name) {
         console.log(commands[i])
     }
     */
+
+
 
 
     //dealing with the websites list stuff...
@@ -168,7 +170,7 @@ function setIframeFontFamily(iframeId, fontFamily) {
     const style = iframeDocument.createElement('style');
     //style.textContent = `* { font-family: ${fontFamily} !important; }`;
     style.textContent = `* { background-color: transparent !important;color: white !important;  }`;
-    
+
     iframeDocument.head.appendChild(style);
 
 }
@@ -196,6 +198,128 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
     }
 
 
+    /* create event listeners for when the check boxes are clicked, or perhaps move them elsewhere */
+    let focusArticle = false
+    let removeScripts = false
+    let stylingFilter = false
+
+    /* append all the conditions to an array/json */
+    let checkboxesObject = {
+        removeScripts,
+        stylingFilter,
+        focusArticle
+    }
+    //add event listeners
+    const checkboxFocus = document.getElementById('focusArticle')
+    checkboxFocus.checked = focusArticle
+
+    const checkboxStyleFilter = document.getElementById('stylingFilter')
+    checkboxFocus.checked = stylingFilter
+
+    const checkboxRemoveScripts = document.getElementById('removeScripts')
+    checkboxFocus.checked = removeScripts
+
+    //focus article
+    checkboxFocus.addEventListener("change", function() {
+        if (this.checked) {
+            // Checkbox is checked
+            focusArticle = true
+            checkboxesObject = {
+                removeScripts,
+                stylingFilter,
+                focusArticle
+            }
+
+            checkboxesJson = JSON.stringify(checkboxesObject);
+
+        } else {
+            // Checkbox is unchecked
+            focusArticle = false;
+            checkboxesObject = {
+                removeScripts,
+                stylingFilter,
+                focusArticle
+            }
+
+            checkboxesJson = JSON.stringify(checkboxesObject);
+
+        }
+    });
+    //style filter
+    checkboxStyleFilter.addEventListener("change", function() {
+        if (this.checked) {
+            // Checkbox is checked
+            stylingFilter = true
+            checkboxesObject = {
+                removeScripts,
+                stylingFilter,
+                focusArticle
+            }
+
+            checkboxesJson = JSON.stringify(checkboxesObject);
+
+        } else {
+            // Checkbox is unchecked
+            stylingFilter = false
+            checkboxesObject = {
+                removeScripts,
+                stylingFilter,
+                focusArticle
+            }
+
+            checkboxesJson = JSON.stringify(checkboxesObject);
+
+        }
+    });
+    //remove scripts
+    checkboxRemoveScripts.addEventListener("change", function() {
+        if (this.checked) {
+            // Checkbox is checked
+            removeScripts = true
+            checkboxesObject = {
+                removeScripts,
+                stylingFilter,
+                focusArticle
+            }
+
+            checkboxesJson = JSON.stringify(checkboxesObject);
+
+        } else {
+            // Checkbox is unchecked
+            removeScripts = false
+            checkboxesObject = {
+                removeScripts,
+                stylingFilter,
+                focusArticle
+            }
+
+            checkboxesJson = JSON.stringify(checkboxesObject);
+
+        }
+    });
+
+
+    /* check styling filter and execute */
+    //console.log(checkboxesJson)
+    const reCheckVariables = document.getElementById("reCheckVariables");
+
+    reCheckVariables.addEventListener("click", function() {
+        // Code to run when the div is clicked
+        //console.log("The div with id reCheckVariables was clicked.");
+        checkboxesObject = {
+            removeScripts,
+            stylingFilter,
+            focusArticle
+        }
+
+        checkboxesJson = JSON.stringify(checkboxesObject);
+
+        //console.log(checkboxesJson)
+
+        /* recheck stylingFilter */
+    });
+
+
     //now add detection for which item has been clicked
     //add event listeners to all the li's that can distinguish between them all
     websitesList.addEventListener("click", function(event) {
@@ -205,8 +329,8 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
             let url = event.target.textContent;
 
             //console.log(url)
-
-            sendLinkToPythonToBeDownloadedAndLoaded(url)
+            //console.log(checkboxesJson)
+            sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson)
 
             //create an async function that can deal with the python/time delay stuff
 
@@ -241,19 +365,24 @@ function togglePlaceholderStyles() {
     }
 }
 
-async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
+async function sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson) {
     console.log(url)
     //send the url to le python to be downloaded
+    //console.log(checkboxesJson)
+
 
     showLoader()
     togglePlaceholderStyles()
-    async function downloadURLandReturnHTML(url) {
-        htmlPath = await eel.downloadURLandReturnHTML(url)();
+    async function downloadURLandReturnHTML(url, checkboxesJson) {
+        //here is where some extra options should be added in, like removeScripts, focusArticle,and so on
+        //console.log(checkboxesJson)
+
+        htmlPath = await eel.downloadURLandReturnHTML(url, checkboxesJson)();
 
         return htmlPath
     }
 
-    filePath = await downloadURLandReturnHTML(url)
+    filePath = await downloadURLandReturnHTML(url, checkboxesJson)
     console.log(filePath)
 
     //set the src of the iframe to this htmlPath
@@ -267,9 +396,9 @@ async function sendLinkToPythonToBeDownloadedAndLoaded(url) {
 
     // changes the font of the iframes content, a bit silly...
     iframeObject.addEventListener('load', () => {
-      setIframeFontFamily('MAINrulesRightIframeID', 'Arial');
+        setIframeFontFamily('MAINrulesRightIframeID', 'Arial');
     });
-    
+
     hideLoader()
     togglePlaceholderStyles()
 

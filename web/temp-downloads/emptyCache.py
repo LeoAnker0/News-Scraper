@@ -13,6 +13,7 @@ import json
 #remove all the html files
 def deleteAllHTMLfiles(directoryToRemove):
 	# Define the pattern for files to be deleted
+
 	pattern = "*.html"
 
 	# Get the current directory
@@ -26,6 +27,7 @@ def deleteAllHTMLfiles(directoryToRemove):
 	# Delete each file
 	for file in files_to_delete:
 		os.remove(file)
+
 
 
 #clear the json file
@@ -43,10 +45,18 @@ def remove_items_from_array(x):
 	with open(x, 'w') as f:
 		json.dump(data, f, indent=4)
 
-
-if __name__ == "__main__":
+def emptyCache():
+	current_dir = os.getcwd()
+	
 	directoryToRemove = "web/temp-downloads"
 	deleteAllHTMLfiles(directoryToRemove)
 
 	remove_items_from_array(f"cacheList.json")
 	#remove all but the one item in the list in cacheList.json
+
+	os.chdir(current_dir)
+
+
+if __name__ == "__main__":
+	emptyCache()
+#

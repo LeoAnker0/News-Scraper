@@ -7,6 +7,10 @@ import fnmatch
 
 from htmlDownloader import downloadAndProcessPageToFile
 
+import sys
+sys.path.append('web/temp-downloads')
+import emptyCache
+
 
 @eel.expose
 def python_function(input):
@@ -35,7 +39,7 @@ def sendFile(wantedFile):
 
 
 @eel.expose
-def downloadURLandReturnHTML(url):
+def downloadURLandReturnHTML(url, checkboxesObject):
 
     #print(url)
 
@@ -115,6 +119,7 @@ def downloadURLandReturnHTML(url):
             #since it matches, return the cachedPath
             #print(cachedPath)
             #time.sleep(1)
+            print(checkboxesObject)
             return cachedPath
 
     #actully go and cache the file
@@ -133,6 +138,13 @@ def downloadURLandReturnHTML(url):
     with open(cacheList, "w") as f:
         json.dump(data, f, indent=4)
 
+
+
+    #now check for wanted filters, and then apply them
+    #checkboxData = json.loads(checkboxesObject)
+    print(checkboxesObject)
+    #now create a function which procceses the html according to our prefernces, and then returns that extra temp file path§
+
     return filePath
 
 
@@ -146,6 +158,9 @@ def onWindowClose():
 
     directoryToRemove = "web/temp-downloads/cache"
     deleteAllHTMLfiles(directoryToRemove)
+
+    #temporarily run emptyCache.py
+    emptyCache.emptyCache() 
 
 
 def deleteAllHTMLfiles(directoryToRemove):

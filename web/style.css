@@ -538,3 +538,29 @@ p {
     background-color: #52c41a;
     color: #fff;
 }
+
+
+
+
+
+/*styling for the button at the bottom of that*/
+.checkbox-grid-button {
+    margin-top: auto;
+    margin-left: auto;
+}
+
+.checkbox-grid-button-element {
+    position: relative;
+    margin: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    top: -5px;
+    background-color: white;
+
+    border-radius: 8px;
+
+    color: black;
+}
+
+/**/
+/**/
