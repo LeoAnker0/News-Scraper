@@ -9,26 +9,7 @@
     <script defer type="text/javascript" src="app.js"></script>
     <script defer type="text/javascript" src="router.js"></script>
     <script defer type="text/javascript" src="styles.js"></script>
-    <script type="text/javascript">
-    //resize the iframes contents to being smaller
-    function resizeIframe(iframe) {
-        // Wait for the iframe's document to finish loading
-        iframe.addEventListener('load', function() {
-            // Get the iframe's document
-            var doc = iframe.contentDocument || iframe.contentWindow.document;
-
-            // Create a new stylesheet
-            var style = doc.createElement('style');
-            style.type = 'text/css';
-
-            // Set the font size to 50%
-            //style.innerHTML = 'html { font-size: 50%; }';
-
-            // Add the stylesheet to the iframe's document
-            doc.head.appendChild(style);
-        });
-    }
-    </script>
+    <script defer type="text/javascript" src="requestCache.js"></script>
     <script>
         window.addEventListener('unload', function() {
     eel.onWindowClose();
@@ -41,7 +22,7 @@
     <div class="backgroundContentContainer">
         <!-- image container -->
         <div class="backgroundImageContainer">
-            <img src="assets/noise9.png" class="backgroundNoise">
+            <img src="assets/noise.webp" class="backgroundNoise">
         </div>
         <!-- the main menu pane -->
         <div id="PANEhome" class="fullScreenHidden">

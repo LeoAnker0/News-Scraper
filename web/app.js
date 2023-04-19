@@ -168,11 +168,20 @@ function setIframeFontFamily(iframeId, fontFamily) {
     const iframe = document.getElementById(iframeId);
     const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
     const style = iframeDocument.createElement('style');
-    //style.textContent = `* { font-family: ${fontFamily} !important; }`;
-    style.textContent = `* { background-color: transparent !important;color: white !important;  }`;
+    style.id = 'custom-style'; // Add an ID to the style element for easier removal
+    style.textContent = `* { background-color: transparent !important; color: white !important; }`;
 
     iframeDocument.head.appendChild(style);
+}
 
+function resetIframeStyles(iframeId) {
+    const iframe = document.getElementById(iframeId);
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    const style = iframeDocument.getElementById('custom-style'); // Get the style element by its ID
+
+    if (style) {
+        iframeDocument.head.removeChild(style); // Remove the style element
+    }
 }
 
 function loadAndCreateListForRules(listOfWebsitesToAdd) {
@@ -209,6 +218,7 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
         stylingFilter,
         focusArticle
     }
+    checkboxesJson = JSON.stringify(checkboxesObject);
     //add event listeners
     const checkboxFocus = document.getElementById('focusArticle')
     checkboxFocus.checked = focusArticle
@@ -258,6 +268,14 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
 
             checkboxesJson = JSON.stringify(checkboxesObject);
 
+            let iframeObject = document.getElementById('MAINrulesRightIframeID');
+            iframeObject.addEventListener('load', setIframeFontFamily('MAINrulesRightIframeID', 'Arial'));
+            // changes the font of the iframes content, a bit silly...
+            /*iframeObject.addEventListener('load', () => {
+                setIframeFontFamily('MAINrulesRightIframeID', 'Arial');
+            });*/
+            // setIframeFontFamily('MAINrulesRightIframeID', 'Arial')
+
         } else {
             // Checkbox is unchecked
             stylingFilter = false
@@ -268,6 +286,10 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
             }
 
             checkboxesJson = JSON.stringify(checkboxesObject);
+            let iframeObject = document.getElementById('MAINrulesRightIframeID');
+            iframeObject.removeEventListener('load', setIframeFontFamily('MAINrulesRightIframeID', 'Arial'));
+            //and then remove this stuff
+            resetIframeStyles('MAINrulesRightIframeID')
 
         }
     });
@@ -330,6 +352,8 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
 
             //console.log(url)
             //console.log(checkboxesJson)
+
+
             sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson)
 
             //create an async function that can deal with the python/time delay stuff
@@ -366,41 +390,18 @@ function togglePlaceholderStyles() {
 }
 
 async function sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson) {
-    console.log(url)
-    //send the url to le python to be downloaded
-    //console.log(checkboxesJson)
+    /* implement some thing where if the checkboxesJSON hasn't changed since last, and the 
+    page has already been accessed this session, then go open the last requested version of the url
+    rather then getting a whole new one for this call, 
 
+    so perhaps we hash the checkboxesJson, and then we compare and contrast, and then we will have 
+    to make a json to store that locally with requested urls, and if they have been requested already
+    so i guess i will have to look up how to store something for only an open window
 
-    showLoader()
-    togglePlaceholderStyles()
-    async function downloadURLandReturnHTML(url, checkboxesJson) {
-        //here is where some extra options should be added in, like removeScripts, focusArticle,and so on
-        //console.log(checkboxesJson)
-
-        htmlPath = await eel.downloadURLandReturnHTML(url, checkboxesJson)();
-
-        return htmlPath
-    }
-
-    filePath = await downloadURLandReturnHTML(url, checkboxesJson)
-    console.log(filePath)
-
-    //set the src of the iframe to this htmlPath
-    let iframeObject = document.getElementById('MAINrulesRightIframeID');
-    iframeObject.src = filePath
-
-    //change the text of the preview site text
-    let previewSiteLinkText = document.getElementById('MAINrulesRightIframeLinkText');
-
-    previewSiteLinkText.innerText = url;
-
-    // changes the font of the iframes content, a bit silly...
-    iframeObject.addEventListener('load', () => {
-        setIframeFontFamily('MAINrulesRightIframeID', 'Arial');
-    });
-
-    hideLoader()
-    togglePlaceholderStyles()
+    and then if it has already been called this session, without changes, then send back the last 
+    previously used url, else just go through the process of requesting a new one
+    */
+    fetchWithCache(url, checkboxesJson);
 
 }
 

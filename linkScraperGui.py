@@ -1,15 +1,18 @@
 import eel
 import json
-from datetime import datetime, timedelta
-import os
-import time
 import fnmatch
-
+import random
 from htmlDownloader import downloadAndProcessPageToFile
-
 import sys
+
 sys.path.append('web/temp-downloads')
 import emptyCache
+import time
+from datetime import datetime, timedelta
+import datetime
+import os
+import string
+from bs4 import BeautifulSoup
 
 
 @eel.expose
@@ -108,18 +111,20 @@ def downloadURLandReturnHTML(url, checkboxesObject):
         cachedPath = parsedFile['cachedSites'][i]['filepath']
 
         #prepare datetime stuff
-        time_in_DateTime = datetime.fromtimestamp(cacheTime / 1000)
-        current_DateTime = datetime.now()
+        #time_in_DateTime = datetime.fromtimestamp(cacheTime / 1000)
+        #current_DateTime = datetime.now()
 
-        time_diff = current_DateTime - time_in_DateTime
+        #time_diff = current_DateTime - time_in_DateTime
 
         #perform a comparison between the input url, and the one found here
         #also check that the cacheTime is less than a certain time away...
-        if cachedURL == url and time_diff < timedelta(days=7):
+        if cachedURL == url:
             #since it matches, return the cachedPath
             #print(cachedPath)
             #time.sleep(1)
-            print(checkboxesObject)
+
+            #print(checkboxesObject)
+            cachedPath = filterAndSend(cachedPath, checkboxesObject)
             return cachedPath
 
     #actully go and cache the file
@@ -138,17 +143,116 @@ def downloadURLandReturnHTML(url, checkboxesObject):
     with open(cacheList, "w") as f:
         json.dump(data, f, indent=4)
 
-
-
     #now check for wanted filters, and then apply them
     #checkboxData = json.loads(checkboxesObject)
-    print(checkboxesObject)
+    #print(checkboxesObject)
     #now create a function which procceses the html according to our prefernces, and then returns that extra temp file path§
+    filePath = filterAndSend(filePath, checkboxesObject)
 
     return filePath
 
 
 eel.init("web")
+
+
+#process html file, and create new temporary html
+def filterAndSend(filepath, checkboxesObject):
+    #print(filepath)
+    source_file_path = f"web/{filepath}"
+
+    rand_string = ''.join(random.choices(string.ascii_uppercase, k=4))
+    fileName = f"TEMP-{rand_string}"
+
+    destination_file_path = f"web/temp-downloads/cache/{fileName}.html"
+
+    # Open the source file for reading
+    with open(source_file_path, "r") as source_file:
+        # Read the contents of the file
+        file_content = source_file.read()
+
+    #article focus
+    def remove_html_except_article(soup):
+        body = soup.body
+
+        # find the article tag and its parents
+        article = body.article
+        parents = []
+        if article:
+            parents = [parent for parent in article.parents]
+
+        # remove all tags except for the article tag and its parents
+        for tag in body.find_all(True):
+            if tag not in parents and tag.name != 'article':
+                tag.extract()
+
+        return soup
+
+    #perform all the filtering on file_content
+    def filterThroughConditions(html, checkboxesObject):
+        soup = BeautifulSoup(html, 'html.parser')
+
+        #go through for all a tags and clear the href
+        for a in soup.find_all('a'):
+            del a['href']
+
+        #add a script that will stop all logging, since it's clunkin up my console
+
+        #check the json object and get conditions
+        checkboxes = json.loads(checkboxesObject)
+        removeScripts = checkboxes['removeScripts']
+        stylingFilter = checkboxes['stylingFilter']
+        focusArticle = checkboxes['focusArticle']
+
+        #print(f"removeScripts {removeScripts} stylingFilter {stylingFilter} focusArticle {focusArticle}")
+
+        if removeScripts == True:
+            #removes the script tags for le speed and also incase they should be doing something silly
+            for script in soup.find_all('script'):
+                script.decompose()
+
+        #implement focusArticle
+        if focusArticle == True:
+            # Find the article tag
+            article = soup.find('article')
+
+            # If no article tag is found, return None
+            if article is None:
+                print("No <article> tag found.")
+                return None
+
+            # Get the parents of the article tag
+            parents = list(article.parents)
+
+            # Create a new soup for the filtered content
+            soup = BeautifulSoup('<html><head></head><body></body></html>',
+                                 'html.parser')
+
+            # Add the parents to the new soup
+            parent_node = soup.body
+            for parent in reversed(
+                    parents[:-2]
+            ):  # Ignore the last 2 items, which are <body> and <html>
+                new_parent = soup.new_tag(parent.name, **parent.attrs)
+                parent_node.append(new_parent)
+                parent_node = new_parent
+
+            # Add the article to the new soup
+            parent_node.append(article)
+
+        #print(str(soup))
+
+        return str(soup)
+
+    file_content = filterThroughConditions(file_content, checkboxesObject)
+
+    # Open the destination file for writing
+    with open(destination_file_path, "w") as destination_file:
+        # Write the contents of the source file to the destination file
+        destination_file.write(file_content)
+
+    destination_file_path = destination_file_path[4:]
+
+    return destination_file_path
 
 
 #when the window is closed, this will allow me to clear the temp temp cache
@@ -160,7 +264,7 @@ def onWindowClose():
     deleteAllHTMLfiles(directoryToRemove)
 
     #temporarily run emptyCache.py
-    emptyCache.emptyCache() 
+    #emptyCache.emptyCache()
 
 
 def deleteAllHTMLfiles(directoryToRemove):
