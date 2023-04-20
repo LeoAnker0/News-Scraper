@@ -29,6 +29,8 @@ For some sections of this scraper Selenium is used, so that will need to be down
 
 ## Features
 ### Link Scraping
+* scrapeForLinks.py is the core script for this section, since it is the part responsible for properly scraping links
+* linkScraperGui.py is a GUI for configuring the scraper rules per site
 
 ### Article Scraping
 
