@@ -23,4 +23,6 @@ temp-downloads/*
 !temp-downloads/emptyCache.py
 !temp-downloads/cache
 
-News-Scraper
+#copyrighted fonts
+web/fonts/*
+web/fonts/fonts.css
