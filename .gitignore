@@ -5,24 +5,24 @@ __pycache__
 .DS_store
 
 #links ouput file
-links.json
+src/src/links.json
 
-test.html
-temp.txt
+src/test.html
+src/temp.txt
 
 #node modules
-node_modules
+src/node_modules
 
-package.json
+src/package.json
 package-lock.json
 
 
 #temp-downloads contents
-temp-downloads/*
-!temp-downloads/cacheList.json
-!temp-downloads/emptyCache.py
-!temp-downloads/cache
+src/web/temp-downloads/*
+!src/web/temp-downloads/cacheList.json
+!src/web/temp-downloads/emptyCache.py
+!src/web/temp-downloads/cache
 
 #copyrighted fonts
-web/fonts/*
-web/fonts/fonts.css
+src/src/web/fonts/*
+src/web/fonts/fonts.css
