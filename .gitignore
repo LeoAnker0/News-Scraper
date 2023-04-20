@@ -23,9 +23,7 @@ src/web/temp-downloads/*
 !src/web/temp-downloads/emptyCache.py
 !src/web/temp-downloads/cache
 
-<<<<<<< HEAD=======
 #copyrighted fonts
 src/web/fonts/*
 !src/web/fonts/fonts.css
 !src/web/fonts/fonts.txt
->>>>>>> main
