@@ -1,0 +1,26 @@
+#pycache
+__pycache__
+
+#macos files
+.DS_store
+
+#links ouput file
+links.json
+
+test.html
+temp.txt
+
+#node modules
+node_modules
+
+package.json
+package-lock.json
+
+
+#temp-downloads contents
+temp-downloads/*
+!temp-downloads/cacheList.json
+!temp-downloads/emptyCache.py
+!temp-downloads/cache
+
+News-Scraper

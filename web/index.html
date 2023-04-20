@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My GUI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script defer type="text/javascript" src="app.js"></script>
+    <script defer type="text/javascript" src="router.js"></script>
+    <script defer type="text/javascript" src="styles.js"></script>
+    <script defer type="text/javascript" src="requestCache.js"></script>
+    <script>
+        window.addEventListener('unload', function() {
+    eel.onWindowClose();
+});
+</script>
+</head>
+
+<body>
+    <!-- the background -->
+    <div class="backgroundContentContainer">
+        <!-- image container -->
+        <div class="backgroundImageContainer">
+            <img src="assets/noise.webp" class="backgroundNoise">
+        </div>
+        <!-- the main menu pane -->
+        <div id="PANEhome" class="fullScreenHidden">
+            <nav>
+                <div class="textContentBar">
+                    <h1>Main</h1>
+                    <div class="buttonContainerBox">
+                        <!-- blur box -->
+                        <div class="blurBox"></div>
+                        <div class="contentBox"></div>
+                    </div>
+                </div>
+            </nav>
+            <div class="containListItems">
+                <ul id="websitesListID">
+                </ul>
+            </div>
+        </div>
+        <!-- the pane for adding new rules -->
+        <div id="PANEaddRules" class="fullScreenHidden ">
+            <nav>
+                <div class="textContentBar">
+                    <h1>Rules</h1>
+                    <div class="buttonContainerBox">
+                        <!-- blur box -->
+                        <div class="blurBox"></div>
+                        <div class="contentBox">
+                            <form>
+                                <div class="checkbox-grid">
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="removeScripts" name="removeScripts" value="value1" class="checkbox-element">
+                                            <label for="removeScripts"></label>
+                                        </div>
+                                        <div class="label-container">
+                                            <label for="removeScripts" class="non-selectable">Remove Scripts</label>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="stylingFilter" name="stylingFilter" value="value2" class="checkbox-element">
+                                            <label for="stylingFilter"></label>
+                                        </div>
+                                        <div class="label-container">
+                                            <label for="stylingFilter" class="non-selectable">Styling Filter</label>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="focusArticle" name="focusArticle" value="value3" class="checkbox-element">
+                                            <label for="focusArticle"></label>
+                                        </div>
+                                        <div class="label-container">
+                                            <label for="focusArticle" class="non-selectable">Focus Article</label>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" id="checkbox4" name="checkbox4" value="value4" class="checkbox-element">
+                                            <label for="checkbox4"></label>
+                                        </div>
+                                        <div class="label-container">
+                                            <label for="checkbox4" class="non-selectable">Label 4</label>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-group checkbox-grid-button">
+                                        <div class="checkbox-grid-button-element" id="reCheckVariables">Run</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="loader">
+                    <span></span>
+                </div>
+            </nav>
+            <div class="MAINrules">
+                <!-- feature the links outputs from the filters  -->
+                <div class="MAINrulesLeft">
+                    <div class="MAINrulesLeft-content">
+                        <div class="containListItems">
+                            <ul id="MAINrulesLeftWebsitesListID">
+                                <!-- contains li items when hydrated by JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- be a vertical split between the left and right side -->
+                <div class="MAINrulesCentre">
+                </div>
+                <!-- contain both the view of an iframe, as well as the rules when they are being edited -->
+                <div class="MAINrulesRight">
+                    <!-- rules container -->
+                    <div class="MAINrulesRight-rules">
+                    </div>
+                    <div class="MAINrulesRight-iFrame-placeholder">
+                    </div>
+                    <!-- i frame -->
+                    <div class="MAINrulesRight-iFrame">
+                        <div class="MAINrulesRight-iFrame-link-container">
+                            <div class="MAINrulesRight-iFrame-link-text" id="MAINrulesRightIframeLinkText">
+                                <!-- the link that is being previewed -->
+                            </div>
+                        </div>
+                        <iframe class="MAINrulesRight-iFrame-element" id="MAINrulesRightIframeID" src=""></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- just the old button that can connect with the js and then with the python
+    <button onclick="myFunction()">Click me</button>-->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{
+    "websites": [
+        {
+            "name": "",
+            "url": "",
+
+            "commands": [
+                "start|all|true|string|/news/",
+                "end|5|true|is_numeric|all"
+            ]
+        }
+
+    ]
+}

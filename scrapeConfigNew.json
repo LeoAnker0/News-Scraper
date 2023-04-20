@@ -1,0 +1,32 @@
+{
+    "websites": [
+        {
+            "name": "",
+            "url": "",
+
+            "starts_with_type": "",
+            "starts_with_command": "",
+            "starts_with": "",
+
+            "doesnt_start_with_type": "",
+            "doesnt_start_with_command": "",
+            "doesnt_start_with": "",
+
+            "ends_with_type": "",
+            "ends_with_command": "",
+            "ends_with": "",
+
+            "doesnt_end_with_type": "",
+            "doesnt_end_with_command": "",
+            "doesnt_end_with": "",
+
+            "has": [
+                ""
+            ],
+            "doesnt_have": [
+                ""
+            ]
+        }
+
+    ]
+}
