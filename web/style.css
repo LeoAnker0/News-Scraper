@@ -1,0 +1,566 @@
+/*prevent defaults*/
+ul,
+li,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    all: unset;
+    display: block;
+}
+
+:root {
+    font-family: 'Cirka';
+    font-weight: 400;
+    color: white;
+
+    --page-height: 100px;
+    --loader-colour: var(--orange);
+
+
+    /* colour variables */
+    --blackest-black: #000000;
+    --black-black: #0A0909;
+    --black: #131211;
+    --less-black: #1C1B1A;
+    --lessest-black: #252422;
+    --darkest-grey: #292825;
+    --jet: #333234;
+    --dark-grey: #2C2B28;
+    --grey: #403D39;
+    --davys-grey: #524E49;
+    --granite-grey: #635f59;
+    --nickel-grey: #757069;
+    --middle-grey: #868179;
+    --silver-grey: #A9a399;
+    --pale-grey: #bbb4a9;
+    --light-grey: #CCC5B9;
+    --off-white: #FFFCF2;
+    --white: #FFFFFF;
+
+    --orange--3: #f4ae93;
+    --orange--2: #f08b64;
+    --orange--1: #ee7648;
+
+    --orange: #EB5E28;
+
+    --orange-1: #c94512;
+    --orange-2: #a83a0f;
+    --orange-3: #7d2b0b;
+    --orange-4: #4d1a07;
+
+}
+
+
+body {
+    all: unset;
+    height: 100svh;
+    margin: 0;
+    padding: 0;
+
+
+}
+
+html {
+    all: unset;
+}
+
+.non-selectable {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Standard syntax */
+}
+
+
+.fullScreenHidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    display: block;
+    visibility: hidden;
+    opacity: 0%;
+}
+
+.fullScreenVisible {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    display: block;
+    visibility: visible;
+    opacity: 100%;
+}
+
+.containListItems {
+    position: relative;
+}
+
+ul {
+    margin-top: 4rem;
+}
+
+li {
+    position: relative;
+    margin-left: 10%;
+    margin-top: 0.4rem;
+    font-size: 1.5em;
+    color: white;
+    mix-blend-mode: multiply;
+
+    text-transform: uppercase;
+
+}
+
+nav {
+    position: relative;
+    width: 100%;
+    //background-color: var(--jet);
+    border-bottom: 1px solid white;
+}
+
+h1 {
+    position: relative;
+    font-family: EditorialOld;
+    font-size: 6em;
+    font-weight: 200;
+
+    color: black;
+    color: white;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+    z-index: 1;
+}
+
+h3 {
+    position: relative;
+    font-family: EditorialOld;
+    font-size: 1rem;
+    font-weight: 200;
+    padding: 0.3rem;
+
+    color: black;
+    color: white;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+p {
+    position: relative;
+    font-family: EditorialOld;
+    font-size: 1em;
+    font-weight: 200;
+
+    color: black;
+    color: white;
+    mix-blend-mode: multiply;
+    opacity: 0.95;
+    z-index: 1;
+}
+
+.textContentBar {
+    position: relative;
+    height: 7rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 1;
+
+}
+
+.buttonContainerBox {
+    position: relative;
+    height: 6rem;
+    width: 40rem;
+    outline: 1px solid white;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.blurBox {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(100px) invert(1.0) saturate(5.0) sepia(1.0);
+    mix-blend-mode: multiply;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.8) 0px 18px 36px -18px inset;
+}
+
+
+
+
+/* adding background colour/noise */
+.backgroundContentContainer {
+    position: relative;
+    height: 100lvh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.backgroundImageContainer {
+    position: absolute;
+    background: #000046;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(-45deg, #1CB5E0, #000046);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(-45deg, #1CB5E0, #000046);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.backgroundNoise {
+    position: absolute;
+    object-fit: cover;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    filter: contrast(400%) brightness(0.4) saturate(260%);
+    mix-blend-mode: multiply;
+}
+
+
+
+
+
+.contentBox {
+    position: relative;
+    //margin: 1rem;
+    z-index: 100000000000000;
+
+}
+
+
+
+/*rules main styles*/
+
+.MAINrules {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+
+    /*css grid stuff*/
+    display: grid;
+    grid-template-columns: 1fr 2px minmax(0, 600px);
+    grid-template-columns: 1fr 1px 1fr;
+    grid-template-rows: auto;
+}
+
+.MAINrulesLeft {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.MAINrulesLeft-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-x: scroll;
+    //scroll-behavior: smooth;
+    //transition: all 0.5s ease-in-out;
+}
+
+.MAINrulesLeft-li {
+    position: relative;
+    text-transform: unset;
+    list-style: none;
+    white-space: nowrap;
+    min-width: 100%;
+    overflow: hidden;
+
+    display: inline-block;
+    margin-right: 4rem;
+}
+
+
+
+.MAINrulesCentre {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+    filter: contrast(200%);
+    mix-blend-mode: multiply;
+}
+
+.MAINrulesRight {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.MAINrulesRight-rules {
+    position: absolute;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+}
+
+.MAINrulesRight-iFrame {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+
+}
+
+.MAINrulesRight-iFrame-element {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+.MAINrulesRight-iFrame-placeholder {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    backdrop-filter: blur(0px) brightness(1.0) grayscale(0.0) sepia(0.0);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, backdrop-filter 0.7s linear;
+
+}
+
+.MAINrulesRight-iFrame-placeholder.filter-applied {
+    /* Apply the filter */
+    z-index: 10000;
+    backdrop-filter: blur(12px) brightness(0.7) grayscale(0.7) sepia(0.3);
+    opacity: 1;
+}
+
+.MAINrulesRight-iFrame-link-container {
+    position: relative;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.MAINrulesRight-iFrame-link-text {
+    position: relative;
+    color: white;
+    width: 95%;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+
+
+    /* different font settings for readability and compactness
+    font-family: 'helvetica';
+
+    font-size: 0.75em;
+    */
+
+}
+
+/* loader styles */
+#loader {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    overflow: hidden;
+    background-color: transparent;
+    top: 2px;
+    z-index: 100000000000000;
+
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+
+    transition: opacity 0.3s ease-in-out;
+}
+
+#loader.show {
+    opacity: 1;
+    display: block;
+    visibility: visible;
+}
+
+#loader span {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: var(--loader-colour);
+    animation: loader 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes loader {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+
+
+
+/* check boxes styling */
+/* Style for the checkbox grid */
+.checkbox-grid {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+
+}
+
+.checkbox-group {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    //height: 100%;
+    //width: 100%;
+    //background-color: blue;
+}
+
+/* Style for the checkbox container */
+.checkbox-container {
+    --bg-checkbox: var(--pale-grey);
+
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    margin: 10px;
+    width: 75px;
+    height: 25px;
+
+    border-radius: 80px;
+
+    outline: 1px solid var(--dark-grey);
+
+    background-color: var(--bg-checkbox);
+}
+
+/* Style for the checkbox input */
+.checkbox-container input[type="checkbox"] {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    visibility: hidden;
+
+    display: inline-block;
+
+}
+
+/* Style for the checkbox tick icon */
+.checkbox-container label:before {
+    content: "";
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid var(--middle-grey);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Style for the checkbox tick icon when checked */
+.checkbox-container input[type="checkbox"]:checked+label:before {
+    left: calc(100% - 24px);
+    border-color: var(--off-white);
+}
+
+/* Style for the label container */
+.label-container {
+    font-size: 16px;
+    margin: 0;
+    cursor: pointer;
+
+
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    //background-color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+    padding-top: 15px;
+    display: inline-block;
+    //float: left;
+
+    align-items: center;
+    width: calc(100% - 17px);
+    color: white;
+
+}
+
+.checked-javascript {
+    background-color: var(--orange);
+}
+
+/* Style for the label container when checked */
+.checkbox-container input[type="checkbox"]:checked+.label-container {
+    background-color: #52c41a;
+    color: #fff;
+    color: black;
+}
+
+
+/* Style for the label container when checked and hovered */
+.checkbox-container input[type="checkbox"]:checked+.label-container:hover {
+    background-color: #52c41a;
+    color: #fff;
+}
+
+/* Style for the label container when checked and hovered */
+.checkbox-container input[type="checkbox"]:checked+.label-container:hover {
+    background-color: #52c41a;
+    color: #fff;
+}
+
+
+
+
+
+/*styling for the button at the bottom of that*/
+.checkbox-grid-button {
+    margin-top: auto;
+    margin-left: auto;
+}
+
+.checkbox-grid-button-element {
+    position: relative;
+    margin: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    top: -5px;
+    background-color: white;
+
+    border-radius: 8px;
+
+    color: black;
+}
+
+/**/
+/**/

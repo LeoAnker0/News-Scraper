@@ -1,0 +1,10 @@
+for scrapeListConfig.json, the way it will work, is the top setting will have the list of websites, and then each one of these will have it's own section, where it will be possible to add removes, and plusses and so on, and requires, for the links sortinging, and "starts with", and so on.
+
+So, i have chosen to move from a toml to json, since i know how json works, and for this use i think it will be better, since it allows the insertion of arrays.
+And the different items will be
+
+name
+starts_with
+ends_with
+has
+doesnt_have
