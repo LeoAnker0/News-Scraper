@@ -42,6 +42,12 @@ For some sections of this scraper Selenium is used, so that will need to be down
 * **scrapeForLinks.py**: This is the core script for the link scraping section, as it handles the actual link scraping process.
 * **linkScraperGui.py**: This is a GUI designed for configuring the scraper rules for each site, making it easier to set up and manage individual filters.
 
+###### The Link Scraper GUI previewing a link
+![linkScraperGui](https://user-images.githubusercontent.com/112939203/233508753-bfd71102-de76-46fe-9ab5-d184c9008061.png)
+
+###### The Link Scraper GUI previewing a link, with script tags removed by Python, and an extra styling filter added to the iframe
+![linkScraperGui](https://user-images.githubusercontent.com/112939203/233508772-87a573cc-010b-4c37-905f-44c15a237017.png)
+
 
 ### Article Scraping
  * *not started yet*
