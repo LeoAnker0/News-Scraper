@@ -389,9 +389,9 @@ function togglePlaceholderStyles() {
     }
 }
 
-/* implement some thing where if the checkboxesJSON hasn't changed since last, and the 
+/* implement some thing where if the checkboxesJSON hasn't changed since last, and the */
 async function sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson) {
-    page has already been accessed this session, then go open the last requested version of the url
+    /*page has already been accessed this session, then go open the last requested version of the url
     rather then getting a whole new one for this call, 
 
     so perhaps we hash the checkboxesJson, and then we compare and contrast, and then we will have 
@@ -401,7 +401,7 @@ async function sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson) {
     and then if it has already been called this session, without changes, then send back the last 
     previously used url, else just go through the process of requesting a new one
     */
-fetchWithCache(url, checkboxesJson);
+    fetchWithCache(url, checkboxesJson);
 
 }
 
