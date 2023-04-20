@@ -35,3 +35,8 @@ For some sections of this scraper Selenium is used, so that will need to be down
 ### Processing/Analysis
 
 ### Front End
+
+
+## License
+
+[MIT License](LICENSE.md) © Leo Anker
