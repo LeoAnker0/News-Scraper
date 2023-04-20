@@ -24,5 +24,6 @@ src/web/temp-downloads/*
 !src/web/temp-downloads/cache
 
 #copyrighted fonts
-src/src/web/fonts/*
-src/web/fonts/fonts.css
+src/web/fonts/*
+!src/web/fonts/fonts.css
+!src/web/fonts/fonts.txt
