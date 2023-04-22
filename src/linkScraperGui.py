@@ -251,6 +251,18 @@ def onWindowClose():
     #emptyCache.emptyCache()
 
 
+
+#selenium cacher/links filterer caller
+@eel.expose()
+def createSeleniumCacheOfSiteAndRequestLinks(url):
+    print(f"URL:\t{url}")
+
+    linksArray = [url]
+    returnJSON = json.dumps({"linksArray":linksArray})
+    return returnJSON
+
+
+
 def deleteAllHTMLfiles(directoryToRemove):
     # Define the pattern for files to be deleted
     current_dir = os.getcwd()

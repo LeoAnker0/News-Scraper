@@ -110,59 +110,30 @@ async function loadEditJsonPage(name) {
     let siteURLforLinks = jsonOfLI.urlForLinks;
     let commands = jsonOfLI.commands;
 
-    let siteTag = document.getElementById('contentBoxSiteName');
-    let domainTag = document.getElementById('contentBoxDomainName');
+    /*send this domain to python, for it to create a download of it, and return all links*/
+    let listOfWebsitesToAddJSONstring = await createSeleniumCacheOfSiteAndRequestLinks(siteURL);
+    let listOfWebsitesToAddJSONobject = JSON.parse(listOfWebsitesToAddJSONstring);
+    let listOfWebsitesToAdd = listOfWebsitesToAddJSONobject.linksArray;
 
-    //change it in the hmtl view
-    //siteTag.innerText = siteName;
-    //domainTag.innerText = siteURL;
-
-    /*
-    //console log stuff
-    for (let i = 0; i <commands.length; i ++) {
-        console.log(commands[i])
-    }
-    */
+    console.log("listOfWebsitesToAdd: ", listOfWebsitesToAdd)
 
 
 
 
     //dealing with the websites list stuff...
-    listOfWebsitesToAdd = ['https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan', 'https://www.dr.dk/nyheder/udland/loekke-efter-omstridt-macron-udtalelse-jeg-ville-selv-have-udtrykt-mig-paa-en', 'https://www.dr.dk/nyheder/indland/alvorligt-syge-tarmkraeftpatienter-blev-fejlinformeret-om-livsvigtig-operation-i', 'https://www.bbc.co.uk/news/live/world-us-canada-65270164', 'https://www.nrk.no/sport/nrk-erfarer_-age-hareide-blir-islandsk-landslagssjef-1.16372979', 'https://www.svt.se/nyheter/utrikes/ung-man-pekas-ut-ska-ligga-bakom-lackan-av-hemliga-dokument']
-    loadAndCreateListForRules(listOfWebsitesToAdd)
-    /*
-    lets do this all in a new function, for cleanliness
-    */
-
-    //create a fake list here first for testing purposeses
-    /*make sure it so that you use a list to populate another list, since this will be the 
-    most easy to make work when we integrate it with the other parts*/
-
-    //make that list populate the list in html
-
-    //make sure that there are either two well linked lists, or that there's some way of better
-    ///represeting the data, since i would like to be able to show how the link shows up in 
-    ///the scraper, whilst also being able to actually link them into being, so i will need to
-    ///have some system that checks wether they have a https already, or not, and then apply a valid
-    ///a valid pre-https for them.
-
-    //make a simple function that when one of those links is clicked will then tell the python
-    ///to download the file, and then to add the html to temp-downloads.
-    ///and ideally it should only have to download a specifc link once
-    ///and also it should be relatively snappy, so therefore we might need to use the requests library
-    ///instead of selenium, since selenium is slow, but i can try benchmarking that before i say anything
-    ///particularly rash
-
-    //then the local cached version should be set as the path for the previewing iframe
-    ///this should make the rules be hidden
-
-    /*and then after we should start adding the functionality where we can actually cached a real
-    version of the file that we want to scrape the links from, and then we can start doing all the 
-    rules things and so on, but we can get this key piece of infrastructure up and running first*/
-
-
+    //listOfWebsitesToAdd = ['https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan', 'https://www.dr.dk/nyheder/udland/loekke-efter-omstridt-macron-udtalelse-jeg-ville-selv-have-udtrykt-mig-paa-en', 'https://www.dr.dk/nyheder/indland/alvorligt-syge-tarmkraeftpatienter-blev-fejlinformeret-om-livsvigtig-operation-i', 'https://www.bbc.co.uk/news/live/world-us-canada-65270164', 'https://www.nrk.no/sport/nrk-erfarer_-age-hareide-blir-islandsk-landslagssjef-1.16372979', 'https://www.svt.se/nyheter/utrikes/ung-man-pekas-ut-ska-ligga-bakom-lackan-av-hemliga-dokument']
+    loadAndCreateListForRules(listOfWebsitesToAdd);
 
 }
+
+async function createSeleniumCacheOfSiteAndRequestLinks(url) {
+    const linksJson = await eel.createSeleniumCacheOfSiteAndRequestLinks(url)();
+    return linksJson;
+}
+
+
+
+
 
 function setIframeFontFamily(iframeId, fontFamily) {
     const iframe = document.getElementById(iframeId);
@@ -320,26 +291,6 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
         }
     });
 
-
-    /* check styling filter and execute */
-    //console.log(checkboxesJson)
-    const reCheckVariables = document.getElementById("reCheckVariables");
-
-    reCheckVariables.addEventListener("click", function() {
-        // Code to run when the div is clicked
-        //console.log("The div with id reCheckVariables was clicked.");
-        checkboxesObject = {
-            removeScripts,
-            stylingFilter,
-            focusArticle
-        }
-
-        checkboxesJson = JSON.stringify(checkboxesObject);
-
-        //console.log(checkboxesJson)
-
-        /* recheck stylingFilter */
-    });
 
 
     //now add detection for which item has been clicked
