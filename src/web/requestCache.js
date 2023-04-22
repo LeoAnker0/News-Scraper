@@ -22,7 +22,7 @@ async function fetchWithCache(url, jsonString = '{}') {
     //console.log('Cache key for the current request:', cacheKey);
 
     if (requestCache[cacheKey]) {
-        console.log("Returning cached result");
+        //console.log("Returning cached result");
 
         const filePath = requestCache[cacheKey];
         let iframeObject = document.getElementById('MAINrulesRightIframeID');
@@ -38,7 +38,7 @@ async function fetchWithCache(url, jsonString = '{}') {
         //const queryString = new URLSearchParams(params).toString();
         //const requestUrl = queryString ? `${url}?${queryString}` : url;
 
-        console.log("Fetching new result");
+        //console.log("Fetching new result");
         // Implement your own logic here for handling new requests.
 
         //dump in the function that deals with getting new links

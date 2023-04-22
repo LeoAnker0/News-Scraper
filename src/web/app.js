@@ -185,8 +185,8 @@ function resetIframeStyles(iframeId) {
 }
 
 function loadAndCreateListForRules(listOfWebsitesToAdd) {
-    console.log("loadAndCreateListForRules")
-    console.log(listOfWebsitesToAdd)
+    //console.log("loadAndCreateListForRules")
+    //console.log(listOfWebsitesToAdd)
 
     //set the src of the iframe to be empty
     let iframeObject = document.getElementById('MAINrulesRightIframeID');
@@ -432,13 +432,6 @@ loadMainPane()
 
 
 
-var iframe = document.getElementById('MAINrulesRightIframeID');
-
-// Wait for the iframe to load
-iframe.addEventListener('load', function() {
-    // Overwrite the console.log method of the iframe's document to a no-op function
-    iframe.contentWindow.console.log = function() {};
-});
 
 
 

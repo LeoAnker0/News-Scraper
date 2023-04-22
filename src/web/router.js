@@ -61,7 +61,7 @@ onHistoryChange(function(state) {
     var currentHash = state["hash"];
     var parts = currentPath.split("/");
     var partOne = parts[1];
-    console.log(currentPath)
+    //console.log(currentPath)
     if (currentPath == "/main") {
         buildPANEmain()
     }
