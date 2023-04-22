@@ -1,18 +1,17 @@
-import eel
 import json
 import fnmatch
 import random
-from htmlDownloader import downloadAndProcessPageToFile
-import sys
-
-sys.path.append('web/temp-downloads')
-import emptyCache
-import time
-from datetime import datetime, timedelta
-import datetime
+#import datetime
 import os
 import string
 from bs4 import BeautifulSoup
+
+#import sys
+#sys.path.append('web/temp-downloads')
+#import emptyCache
+
+import eel
+from htmlDownloader import downloadAndProcessPageToFile
 
 
 @eel.expose
@@ -146,7 +145,8 @@ def downloadURLandReturnHTML(url, checkboxesObject):
     #now check for wanted filters, and then apply them
     #checkboxData = json.loads(checkboxesObject)
     #print(checkboxesObject)
-    #now create a function which procceses the html according to our prefernces, and then returns that extra temp file path§
+    #now create a function which procceses the html according to our prefernces,
+    #and then returns that extra temp file path§
     filePath = filterAndSend(filePath, checkboxesObject)
 
     return filePath
@@ -170,22 +170,6 @@ def filterAndSend(filepath, checkboxesObject):
         # Read the contents of the file
         file_content = source_file.read()
 
-    #article focus
-    def remove_html_except_article(soup):
-        body = soup.body
-
-        # find the article tag and its parents
-        article = body.article
-        parents = []
-        if article:
-            parents = [parent for parent in article.parents]
-
-        # remove all tags except for the article tag and its parents
-        for tag in body.find_all(True):
-            if tag not in parents and tag.name != 'article':
-                tag.extract()
-
-        return soup
 
     #perform all the filtering on file_content
     def filterThroughConditions(html, checkboxesObject):
@@ -200,18 +184,18 @@ def filterAndSend(filepath, checkboxesObject):
         #check the json object and get conditions
         checkboxes = json.loads(checkboxesObject)
         removeScripts = checkboxes['removeScripts']
-        stylingFilter = checkboxes['stylingFilter']
+        #stylingFilter = checkboxes['stylingFilter']
         focusArticle = checkboxes['focusArticle']
 
         #print(f"removeScripts {removeScripts} stylingFilter {stylingFilter} focusArticle {focusArticle}")
 
-        if removeScripts == True:
+        if removeScripts is True:
             #removes the script tags for le speed and also incase they should be doing something silly
             for script in soup.find_all('script'):
                 script.decompose()
 
         #implement focusArticle
-        if focusArticle == True:
+        if focusArticle is True:
             # Find the article tag
             article = soup.find('article')
 
@@ -301,12 +285,21 @@ def index():
                      port=8080)
 
 
-""" how to get the current dateTime in millis
-current_datetime = datetime.now()
 
-# convert datetime to milliseconds
-current_time_in_millis = int(current_datetime.timestamp() * 1000)
 
-print(current_time_in_millis)
-"""
-index()
+#create a folder called cache, inside web/temp-downloads
+def createCacheFolder():
+    folderPath = "web/temp-downloads/cache"
+    if not os.path.exists(folderPath):
+        os.makedirs(folderPath)
+
+
+if __name__ == "__main__":
+    #ensure that this folder exists, since git
+    createCacheFolder()
+
+    #start web interface
+    index()
+
+
+

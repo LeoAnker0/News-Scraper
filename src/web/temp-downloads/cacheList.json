@@ -4,36 +4,6 @@
             "url": "https://example.com",
             "filepath": "temp-downloads/example.html",
             "cacheDate": "111100001111000"
-        },
-        {
-            "url": "https://www.dr.dk/nyheder/indland/kirkeminister-er-stadig-ikke-klar-til-aendre-regel-om-kvindelige-praester-kan",
-            "filepath": "temp-downloads/OXOE-1682174949731.html",
-            "cacheDate": 1682174949734
-        },
-        {
-            "url": "https://www.dr.dk/nyheder/udland/loekke-efter-omstridt-macron-udtalelse-jeg-ville-selv-have-udtrykt-mig-paa-en",
-            "filepath": "temp-downloads/LOHP-1682174966520.html",
-            "cacheDate": 1682174966521
-        },
-        {
-            "url": "https://www.dr.dk/nyheder/indland/alvorligt-syge-tarmkraeftpatienter-blev-fejlinformeret-om-livsvigtig-operation-i",
-            "filepath": "temp-downloads/DYWJ-1682174978554.html",
-            "cacheDate": 1682174978556
-        },
-        {
-            "url": "https://www.bbc.co.uk/news/live/world-us-canada-65270164",
-            "filepath": "temp-downloads/PUDW-1682174987047.html",
-            "cacheDate": 1682174987055
-        },
-        {
-            "url": "https://www.svt.se/nyheter/utrikes/ung-man-pekas-ut-ska-ligga-bakom-lackan-av-hemliga-dokument",
-            "filepath": "temp-downloads/CJSK-1682174991356.html",
-            "cacheDate": 1682174991358
-        },
-        {
-            "url": "https://www.nrk.no/sport/nrk-erfarer_-age-hareide-blir-islandsk-landslagssjef-1.16372979",
-            "filepath": "temp-downloads/WCDC-1682175013797.html",
-            "cacheDate": 1682175013798
         }
     ]
 }
