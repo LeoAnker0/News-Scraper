@@ -9,7 +9,7 @@ The project is divided into four main components:
 
 * [Link Scraping](#Link-Scraping)
 * [Article Scraping](#Article-Scraping)
-* [Processing, Analysis, and API Integration](#Processing-Analysis)
+* [Processing, Analysis, and API Integration](#Processing-And-Analysis)
 * [Front-End Development](#Front-End)
  
 Currently, the project is in the initial phase, focusing on link scraping.
@@ -53,7 +53,7 @@ For some sections of this scraper Selenium is used, so that will need to be down
 ### Article Scraping
  * *not started yet*
 
-### Processing/Analysis
+### Processing And Analysis
  * *not started yet*
 
 ### Front End
