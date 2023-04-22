@@ -7,7 +7,7 @@ As this project is currently under development, most or all features are still b
 
 The project is divided into four main components:
 
-* [Link Scraping](#Link Scraping)
+* [Link Scraping](#Link-Scraping)
 * Article Scraping
 * Processing, Analysis, and API Integration
 * Front-End Development
