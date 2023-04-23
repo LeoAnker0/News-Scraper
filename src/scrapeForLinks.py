@@ -52,8 +52,6 @@ def initialise_driver(url):
 
 
 def downloadWebPage(website):
-    print(website)
-
     name = website['name']
     url = website['url']
     print(f"\ndownloading {url}, from {name} \n\n")

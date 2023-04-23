@@ -123,7 +123,11 @@ async function loadEditJsonPage(name) {
 }
 
 async function createSeleniumCacheOfSiteAndRequestLinks(url) {
+    //start loading animation
+    showLoader()
     const linksJson = await eel.createSeleniumCacheOfSiteAndRequestLinks(url)();
+    //stop loading animation
+    hideLoader()
     return linksJson;
 }
 

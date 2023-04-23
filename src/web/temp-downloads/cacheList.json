@@ -29,6 +29,16 @@
             "url": "https://p3.no",
             "filepath": "temp-downloads/KLJX-1682210019039.html",
             "cacheDate": 1682210019043
+        },
+        {
+            "url": "https://www.svtplay.se/",
+            "filepath": "temp-downloads/RCSZ-1682210442693.html",
+            "cacheDate": 1682210442700
+        },
+        {
+            "url": "https://www.svt.se/text-tv/100",
+            "filepath": "temp-downloads/DUFF-1682210525639.html",
+            "cacheDate": 1682210525640
         }
     ]
 }
