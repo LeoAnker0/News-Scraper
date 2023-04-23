@@ -35,13 +35,6 @@ async function fetchWithCache(url, jsonString = '{}') {
 
 
     } else {
-        //const queryString = new URLSearchParams(params).toString();
-        //const requestUrl = queryString ? `${url}?${queryString}` : url;
-
-        //console.log("Fetching new result");
-        // Implement your own logic here for handling new requests.
-
-        //dump in the function that deals with getting new links
         showLoader()
         togglePlaceholderStyles()
         async function downloadURLandReturnHTML(url, checkboxesJson) {
@@ -70,6 +63,7 @@ async function fetchWithCache(url, jsonString = '{}') {
         const data = filePath; // Replace this with the actual data you fetched
         requestCache[cacheKey] = data;
     }
+    return
 }
 
 

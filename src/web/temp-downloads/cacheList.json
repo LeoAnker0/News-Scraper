@@ -39,6 +39,36 @@
             "url": "https://www.svt.se/text-tv/100",
             "filepath": "temp-downloads/DUFF-1682210525639.html",
             "cacheDate": 1682210525640
+        },
+        {
+            "url": "https://www.dr.dk/drtv/",
+            "filepath": "temp-downloads/PLJJ-1682281104659.html",
+            "cacheDate": 1682281104663
+        },
+        {
+            "url": "https://www.dr.dk/boern",
+            "filepath": "temp-downloads/UVRV-1682281118966.html",
+            "cacheDate": 1682281118967
+        },
+        {
+            "url": "https://www.svt.se/",
+            "filepath": "temp-downloads/TNNV-1682281136120.html",
+            "cacheDate": 1682281136121
+        },
+        {
+            "url": "https://www.svt.se/sport/",
+            "filepath": "temp-downloads/IDVD-1682281140448.html",
+            "cacheDate": 1682281140451
+        },
+        {
+            "url": "https://www.svtplay.se",
+            "filepath": "temp-downloads/DNPZ-1682281146655.html",
+            "cacheDate": 1682281146659
+        },
+        {
+            "url": "https://www.oppetarkiv.se/",
+            "filepath": "temp-downloads/UFWU-1682281151100.html",
+            "cacheDate": 1682281151100
         }
     ]
 }

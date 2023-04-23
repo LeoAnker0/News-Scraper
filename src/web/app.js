@@ -301,14 +301,12 @@ function loadAndCreateListForRules(listOfWebsitesToAdd) {
 
             let url = event.target.textContent;
 
-            //console.log(url)
-            //console.log(checkboxesJson)
-
-
             sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson)
+            /* implement some thing where if the checkboxesJSON hasn't changed since last, and the */
+            async function sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson) {
+                fetchWithCache(url, checkboxesJson);
 
-            //create an async function that can deal with the python/time delay stuff
-
+            }
 
 
 
@@ -340,21 +338,7 @@ function togglePlaceholderStyles() {
     }
 }
 
-/* implement some thing where if the checkboxesJSON hasn't changed since last, and the */
-async function sendLinkToPythonToBeDownloadedAndLoaded(url, checkboxesJson) {
-    /*page has already been accessed this session, then go open the last requested version of the url
-    rather then getting a whole new one for this call, 
 
-    so perhaps we hash the checkboxesJson, and then we compare and contrast, and then we will have 
-    to make a json to store that locally with requested urls, and if they have been requested already
-    so i guess i will have to look up how to store something for only an open window
-
-    and then if it has already been called this session, without changes, then send back the last 
-    previously used url, else just go through the process of requesting a new one
-    */
-    fetchWithCache(url, checkboxesJson);
-
-}
 
 
 /* for loading in the main pane */

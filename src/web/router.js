@@ -112,6 +112,9 @@ async function buildPANEaddRules(websiteName) {
 
     PANEhome.classList.add('fullScreenHidden')
     PANEhome.classList.remove('fullScreenVisible')
+
+    //clear all the items in the links list
+
     loadEditJsonPage(websiteName)
     //remove hash from url
     //remove all the items inside the li
@@ -120,20 +123,20 @@ async function buildPANEaddRules(websiteName) {
 
 //clearing all items inside the li's
 async function removeListItemsById(id) {
-  const list = document.getElementById(id);
-  if (!list) {
-    console.error(`No element with ID "${id}" found`);
-    return;
-  }
-  const items = list.querySelectorAll('li');
-  for (let i = 0; i < items.length; i++) {
-    await new Promise(resolve => {
-      setTimeout(() => {
-        items[i].remove();
-        resolve();
-      }, 1);
-    });
-  }
+    const list = document.getElementById(id);
+    if (!list) {
+        console.error(`No element with ID "${id}" found`);
+        return;
+    }
+    const items = list.querySelectorAll('li');
+    for (let i = 0; i < items.length; i++) {
+        await new Promise(resolve => {
+            setTimeout(() => {
+                items[i].remove();
+                resolve();
+            }, 1);
+        });
+    }
 }
 
 
@@ -142,7 +145,6 @@ async function removeListItemsById(id) {
 
 
 
-window.onload = function() { 
+window.onload = function() {
     window.history.pushState(null, null, "main");
 }
-
