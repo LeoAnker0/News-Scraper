@@ -32,3 +32,6 @@ src/gui-links/web/temp-downloads/*
 src/gui-links/web/fonts/*
 !src/gui-links/web/fonts/fonts.css
 !src/gui-links/web/fonts/fonts.txt
+
+#selenium cache
+src/gui-links/seleniumCache/*
