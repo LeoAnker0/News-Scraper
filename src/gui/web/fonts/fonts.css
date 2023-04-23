@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'Cirka';
+    src: url('PPCirka-Variable.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cirka';
+    src: url('PPCircka-Bold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cirka';
+    src: url('PPCircka-Light.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EditorialNew';
+    src: url('PPEditorialNew-Italic.otf') format('opentype');
+    font-style: italic;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'EditorialNew';
+    src: url('PPEditorialNew-Regular.otf') format('opentype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'EditorialNew';
+    src: url('PPEditorialNew-Ultrabold.otf') format('opentype');
+    font-style: normal;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'EditorialNew';
+    src: url('PPEditorialNew-UltraboldItalic.otf') format('opentype');
+    font-style: italic;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'EditorialNew';
+    src: url('PPEditorialNew-Ultralight.otf') format('opentype');
+    font-style: normal;
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'EditorialNew';
+    src: url('PPEditorialNew-UltralightItalic.otf') format('opentype');
+    font-style: italic;
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'EditorialOld';
+    src: url('PPEditorialOld-Italic.otf') format('opentype');
+    font-style: italic;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'EditorialOld';
+    src: url('PPEditorialOld-Regular.otf') format('opentype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'EditorialOld';
+    src: url('PPEditorialOld-Ultrabold.otf') format('opentype');
+    font-style: normal;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'EditorialOld';
+    src: url('PPEditorialOld-UltraboldItalic.otf') format('opentype');
+    font-style: italic;
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: 'EditorialOld';
+    src: url('PPEditorialOld-Ultralight.otf') format('opentype');
+    font-style: normal;
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'EditorialOld';
+    src: url('PPEditorialOld-UltralightItalic.otf') format('opentype');
+    font-style: italic;
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'EditorialOld';
+    src: url('') format('opentype');
+    font-style: normal;
+    font-weight: 400;
+}
