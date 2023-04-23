@@ -63,10 +63,10 @@ onHistoryChange(function(state) {
     var partOne = parts[1];
     //console.log(currentPath)
     if (currentPath == "/main") {
-        buildPANEmain()
+        buildPANEmain();
     }
     if (currentPath == "/rules") {
-        buildPANEaddRules(currentHash)
+        buildPANEaddRules(currentHash);
     }
 });
 
@@ -89,11 +89,11 @@ async function buildPANEmain() {
     //and the other panes to fullScreenHidden
     const PANEhome = document.getElementById('PANEhome');
     const PANEaddRules = document.getElementById('PANEaddRules');
-    PANEhome.classList.add('fullScreenVisible')
-    PANEhome.classList.remove('fullScreenHidden')
+    PANEhome.classList.add('fullScreenVisible');
+    PANEhome.classList.remove('fullScreenHidden');
 
-    PANEaddRules.classList.add('fullScreenHidden')
-    PANEaddRules.classList.remove('fullScreenVisible')
+    PANEaddRules.classList.add('fullScreenHidden');
+    PANEaddRules.classList.remove('fullScreenVisible');
 
     //clear all the content inside, which isn't made by this function
     //removeListItemsById('websitesListID');
@@ -107,22 +107,24 @@ async function buildPANEaddRules(websiteName) {
     const PANEhome = document.getElementById('PANEhome');
     const PANEaddRules = document.getElementById('PANEaddRules');
 
-    PANEaddRules.classList.add('fullScreenVisible')
-    PANEaddRules.classList.remove('fullScreenHidden')
+    PANEaddRules.classList.add('fullScreenVisible');
+    PANEaddRules.classList.remove('fullScreenHidden');
 
-    PANEhome.classList.add('fullScreenHidden')
-    PANEhome.classList.remove('fullScreenVisible')
+    PANEhome.classList.add('fullScreenHidden');
+    PANEhome.classList.remove('fullScreenVisible');
 
     //clear all the items in the links list
+    removeListItemsById("MAINrulesLeftWebsitesListID");
+    loadEditJsonPage(websiteName);
 
-    loadEditJsonPage(websiteName)
-    //remove hash from url
-    //remove all the items inside the li
 
 }
 
 //clearing all items inside the li's
-async function removeListItemsById(id) {
+function removeListItemsById(id) {
+    console.log("removing list items")
+
+
     const list = document.getElementById(id);
     if (!list) {
         console.error(`No element with ID "${id}" found`);
@@ -130,13 +132,14 @@ async function removeListItemsById(id) {
     }
     const items = list.querySelectorAll('li');
     for (let i = 0; i < items.length; i++) {
-        await new Promise(resolve => {
+        new Promise(resolve => {
             setTimeout(() => {
                 items[i].remove();
                 resolve();
             }, 1);
         });
     }
+    return
 }
 
 

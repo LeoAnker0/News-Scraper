@@ -256,7 +256,7 @@ def onWindowClose():
 #selenium cacher/links filterer caller
 @eel.expose()
 def createSeleniumCacheOfSiteAndRequestLinks(url):
-    print(f"URL:\t{url}")
+    #print(f"URL:\t{url}")
 
     #send to selenium and get it to cache
     links = filterForScraperRules(url)
