@@ -97,14 +97,10 @@ async function loadEditJsonPage(name) {
     });
 
 
-    console.log(jsonOfLI);
+    //console.log(jsonOfLI);
 
 
 
-    //load the details into view
-    //get the name and domain name
-    //get the elements in the html
-    //change the elements inner text to being what it's supposed to be
     let siteName = jsonOfLI.name;
     let siteURL = jsonOfLI.url;
     let siteURLforLinks = jsonOfLI.urlForLinks;

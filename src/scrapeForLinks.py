@@ -11,6 +11,8 @@ import os
 from bs4 import BeautifulSoup
 from collections import OrderedDict
 import time
+import pickle
+import copy
 
 #i should really add error handling, especially for the big cases
 #like when downloading the webpage
@@ -50,6 +52,8 @@ def initialise_driver(url):
 
 
 def downloadWebPage(website):
+    print(website)
+
     name = website['name']
     url = website['url']
     print(f"\ndownloading {url}, from {name} \n\n")
@@ -356,7 +360,47 @@ def filterFromExistingScrapeList(scrapeListFile, targetLinksOutputFile):
         writeLinksTooFile(websiteName, websiteURL, links,
                           targetLinksOutputFile)
         #for link in links:
-        #	print(link)
+        #   print(link)
+
+
+#when called through javascript and only filtering a single site
+def filterForScraperRules(url):
+    #check if site has already been called and if yes load cached one, else, make one
+
+    def getCachedOrDownload(url, website):
+        cacheDir = "seleniumCache/"
+
+        #use the url as the filename for the cached file
+        fileName = url.replace('/', '_') + ".html"
+
+        #check if a cached copy exists
+        cachePath = os.path.join(cacheDir, fileName)
+        if os.path.exists(cachePath):
+            with open(cachePath, 'r') as f:
+                html = f.read()
+            soup = BeautifulSoup(html, 'html.parser')
+            return soup
+
+        #now go and download it if it doesn't exist
+        soup = downloadWebPage(website)
+
+        #go cache it
+        with open(cachePath, 'w') as f:
+            f.write(soup.prettify())
+
+        return soup
+
+    website = {"name": "generic", "url": url, "commands": ""}
+    websiteJson = json.dumps(website)
+    websiteJson = json.loads(websiteJson)
+
+    #get cached or download
+    soup = getCachedOrDownload(url, websiteJson)
+    links = filterWebPage(websiteJson, soup)
+
+    
+
+    return links
 
 
 if __name__ == "__main__":

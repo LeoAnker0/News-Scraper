@@ -9,6 +9,26 @@
             "url": "https://dr.dk",
             "filepath": "temp-downloads/HVAA-1682206813454.html",
             "cacheDate": 1682206813458
+        },
+        {
+            "url": "https://www.dr.dk/",
+            "filepath": "temp-downloads/MTXH-1682209994529.html",
+            "cacheDate": 1682209994536
+        },
+        {
+            "url": "https://www.dr.dk/nyheder",
+            "filepath": "temp-downloads/JRYL-1682209996730.html",
+            "cacheDate": 1682209996736
+        },
+        {
+            "url": "https://yr.no",
+            "filepath": "temp-downloads/JREC-1682210013961.html",
+            "cacheDate": 1682210013964
+        },
+        {
+            "url": "https://p3.no",
+            "filepath": "temp-downloads/KLJX-1682210019039.html",
+            "cacheDate": 1682210019043
         }
     ]
 }

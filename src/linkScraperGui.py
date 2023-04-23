@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 
 import eel
 from htmlDownloader import downloadAndProcessPageToFile
+from scrapeForLinks import filterForScraperRules
 
 
 @eel.expose
@@ -257,7 +258,11 @@ def onWindowClose():
 def createSeleniumCacheOfSiteAndRequestLinks(url):
     print(f"URL:\t{url}")
 
-    linksArray = [url]
+    #send to selenium and get it to cache
+    links = filterForScraperRules(url)
+
+
+    linksArray = links
     returnJSON = json.dumps({"linksArray":linksArray})
     return returnJSON
 
@@ -301,7 +306,13 @@ def index():
 
 #create a folder called cache, inside web/temp-downloads
 def createCacheFolder():
+    #i should really go and make this have an array input...
+
     folderPath = "web/temp-downloads/cache"
+    if not os.path.exists(folderPath):
+        os.makedirs(folderPath)
+
+    folderPath = "seleniumCache"
     if not os.path.exists(folderPath):
         os.makedirs(folderPath)
 
