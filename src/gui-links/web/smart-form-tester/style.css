@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: black;
 }
 
 .form-container {
@@ -35,4 +36,10 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+.suggestion {
+    position: absolute;
+    color: #999;
+    pointer-events: none;
 }

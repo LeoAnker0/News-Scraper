@@ -12,27 +12,11 @@
 <body>
     <div class="form-container">
         <form id="custom-form">
-            <div class="input-group">
-                <select class="position" autocomplete="off">
-                    <option value="" disabled selected>Position</option>
-                    <option value="end">end</option>
-                    <option value="start">start</option>
-                    <option value="in">in</option>
-                </select>
-                <input class="length" type="text" placeholder="Length" autocomplete="off">
-                <select class="condition" autocomplete="off">
-                    <option value="" disabled selected>Condition</option>
-                    <option value="true">true</option>
-                    <option value="false">false</option>
-                </select>
-                <select class="command" autocomplete="off">
-                    <option value="" disabled selected>Command</option>
-                    <option value="string">string</option>
-                    <option value="is_numeric">is_numeric</option>
-                    <option value="count">count</option>
-                </select>
-                <input class="content" type="text" placeholder="Content" autocomplete="off">
+            <div id="input-groups-container">
+                <!-- Input groups will be added here -->
+                <!-- Replace the position, condition, and command select elements with the following input elements -->
             </div>
+            <button type="button" id="add-button">Add Input Group</button>
             <button type="submit">Submit</button>
         </form>
     </div>
